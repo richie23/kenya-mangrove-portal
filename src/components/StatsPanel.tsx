@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useRef, useMemo } from 'react';
 
 const COUNTIES = [
@@ -798,7 +798,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
         <div style={{ padding:'24px' }}>
           {sent ? (
             <div style={{ textAlign:'center', padding:'20px' }}>
-              <div style={{ fontSize:'40px', marginBottom:'12px' }}>✓</div>
+              <div style={{ fontSize:'40px', marginBottom:'12px' }}>OK</div>
               <p style={{ fontSize:'16px', fontWeight:'800', color:'#085041', margin:'0 0 8px' }}>Message Sent!</p>
               <p style={{ fontSize:'13px', color:'#666', margin:'0 0 20px' }}>Thank you for contacting us. We will get back to you shortly.</p>
               <button onClick={onClose} style={{ padding:'10px 24px', background:'#085041', color:'white', border:'none', borderRadius:'10px', fontSize:'13px', fontWeight:'700', cursor:'pointer' }}>Close</button>
@@ -3068,3 +3068,4 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
     </div>
   );
 }
+
