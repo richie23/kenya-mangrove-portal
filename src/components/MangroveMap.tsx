@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 'use client';
 import { useRef, useCallback, useState } from 'react';
 import Map, { Source, Layer, Popup } from 'react-map-gl/maplibre';
@@ -312,7 +312,7 @@ export default function MangroveMap() {
           boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
         }}>
           <p style={{ margin: '0 0 4px', fontSize: '13px', fontWeight: '700' }}>
-            Drawing polygon — {drawPoints.length} point{drawPoints.length !== 1 ? 's' : ''} added
+            Drawing polygon â€” {drawPoints.length} point{drawPoints.length !== 1 ? 's' : ''} added
           </p>
           <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>
             Click on the map to add points. Click <strong>Finish</strong> when done (min 3 points).
@@ -363,7 +363,7 @@ export default function MangroveMap() {
         <Source
           id="kenya-mangroves"
           type="geojson"
-          data="/data/kenya_mangroves_4326.geojson"
+          data="https://github.com/richie23/kenya-mangrove-portal/releases/download/v1.0/kenya_mangroves_4326.geojson"
           generateId={true}
           buffer={0}
           tolerance={0.5}
@@ -468,7 +468,7 @@ export default function MangroveMap() {
 
       <LayerControl onToggle={handleLayerToggle} />
 
-      {/* Basemap toggle — right side above chat */}
+      {/* Basemap toggle â€” right side above chat */}
       <div style={{
         position: 'absolute', bottom: '120px', right: '10px', zIndex: 10,
         background: 'white', borderRadius: '10px',
@@ -498,3 +498,4 @@ export default function MangroveMap() {
     </div>
   );
 }
+
