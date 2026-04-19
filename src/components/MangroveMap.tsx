@@ -363,7 +363,7 @@ export default function MangroveMap() {
         <Source
           id="kenya-mangroves"
           type="geojson"
-          data="https://github.com/richie23/kenya-mangrove-portal/releases/download/v1.0/kenya_mangroves_4326.geojson"
+          data="https://github.com/richie23/kenya-mangrove-portal/releases/download/v1.0/kenya_mangroves_simplified.geojson"
           generateId={true}
           buffer={0}
           tolerance={0.5}
@@ -498,4 +498,5 @@ export default function MangroveMap() {
     </div>
   );
 }
+
 
