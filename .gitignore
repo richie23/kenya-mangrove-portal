@@ -1,0 +1,25 @@
+# Large data files - too big for GitHub
+public/data/kenya_mangroves_4326.geojson
+public/data/kenya_mangroves_simplified.geojson
+
+# Build output
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env.local
+.env
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+# Additional GeoJSON files
+public/kenya_mangroves.geojson
+public/kenya_mangroves_4326.geojson
+public/kenya_mangroves.qmd
+public/kenya_mangroves_4326.qmd
+public/data/kenya_mangroves_4326.qmd
