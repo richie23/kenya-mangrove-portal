@@ -1,4 +1,4 @@
-﻿'use client'; // v2-encoding-fixed
+'use client';
 import { useState, useRef, useMemo } from 'react';
 
 const COUNTIES = [
@@ -129,7 +129,7 @@ const TABS = [
   { key: 'map',         label: 'Map',         emoji: 'MAP', color: '#0F6E56' },
   { key: 'species',     label: 'Species',     emoji: 'SPP', color: '#1D9E75' },
   { key: 'totals',      label: 'Totals',      emoji: 'TOT', color: '#085041' },
-  { key: 'carbon',      label: 'Carbon',      emoji: 'CO2', color: '#0F6E56' },
+  { key: 'carbon',      label: 'Blue Carbon', emoji: 'BLC', color: '#0F6E56' },
   { key: 'documents',   label: 'Documents',   emoji: 'DOC', color: '#185FA5' },
   { key: 'restoration', label: 'Restoration', emoji: 'RES', color: '#5DCAA5' },
   { key: 'degradation', label: 'Degradation', emoji: 'DEG', color: '#E24B4A' },
@@ -751,7 +751,7 @@ async function exportAllPDF() {
   doc.save('Kenya_Mangrove_All_Counties_Report.pdf');
 }
 
-// â”€â”€ CONTACT FORM (sends via Anthropic API) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CONTACT FORM (sends via Anthropic API) ────────────────────────
 function ContactModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState('');
   const [org, setOrg] = useState('');
@@ -849,7 +849,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ ABOUT MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ABOUT MODAL ───────────────────────────────────────────────────
 function AboutModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -927,7 +927,7 @@ function AboutModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ HELP MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HELP MODAL ────────────────────────────────────────────────────
 function HelpModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -960,7 +960,7 @@ function HelpModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ HAMBURGER MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HAMBURGER MENU ────────────────────────────────────────────────
 function DisclaimerModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -1055,7 +1055,7 @@ function HamburgerMenu() {
 }
 
 
-// â”€â”€ TAB-SPECIFIC REPORT COMPONENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── TAB-SPECIFIC REPORT COMPONENT ────────────────────────────────
 function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void; onFlyTo?: (lng: number, lat: number, zoom: number) => void }) {
   const [countyTab, setCountyTab] = useState(COUNTIES[0].name);
   const c = COUNTIES.find(x => x.name === countyTab) || COUNTIES[0];
@@ -1082,7 +1082,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
     <div style={{ padding:'0 2px' }}>
       <button onClick={onClose}
         style={{ display:'flex', alignItems:'center', gap:'6px', background:`${color}18`, border:'none', borderRadius:'8px', padding:'8px 14px', fontSize:'12px', fontWeight:'700', color, cursor:'pointer', marginBottom:'12px', width:'100%' }}>
-        â† Back
+        <- Back
       </button>
 
       {/* Header */}
@@ -1091,7 +1091,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         <p style={{ fontSize:'11px', color:'rgba(255,255,255,0.8)', margin:0 }}>Kenya Mangrove Portal | KFS | KMFRI | 2017-2027 Management Plan</p>
       </div>
 
-      {/* â”€â”€ SPECIES TAB REPORT â”€â”€ */}
+      {/* ── SPECIES TAB REPORT ── */}
       {tab === 'species' && (
         <div>
           <SH title="Kenya Mangrove Species - National Overview" color="#0F6E56"/>
@@ -1138,7 +1138,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* â”€â”€ TOTALS TAB REPORT â”€â”€ */}
+      {/* ── TOTALS TAB REPORT ── */}
       {tab === 'totals' && (
         <div>
           <SH title="National Mangrove Statistics" color="#085041"/>
@@ -1158,7 +1158,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
               <div key={co.name} style={{ background:'white', borderRadius:'10px', padding:'12px', marginBottom:'10px', border:'1px solid #eee' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'6px' }}>
                   <button onClick={() => { onFlyTo && onFlyTo(co.lng, co.lat, co.zoom || 10); }}
-                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County â†—</button>
+                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County</button>
                   <span style={{ background:`${co.color}20`, color:co.color, fontSize:'11px', padding:'2px 8px', borderRadius:'10px', fontWeight:'700' }}>{co.area.toLocaleString()} ha</span>
                 </div>
                 <div style={{ display:'flex', borderRadius:'6px', overflow:'hidden', height:'12px', marginBottom:'6px' }}>
@@ -1186,7 +1186,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* â”€â”€ CARBON TAB REPORT â”€â”€ */}
+      {/* ── CARBON TAB REPORT ── */}
       {tab === 'carbon' && (
         <div>
           <SH title="Blue Carbon Stocks - All Counties" color="#085041"/>
@@ -1199,7 +1199,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
             <div key={co.name} style={{ background:'white', borderRadius:'10px', padding:'12px', marginBottom:'10px', border:'1px solid #eee' }}>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
                 <button onClick={() => { onFlyTo && onFlyTo(co.lng, co.lat, co.zoom || 10); }}
-                  style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County â†—</button>
+                  style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County</button>
                 <span style={{ fontSize:'13px', fontWeight:'800', color:co.color }}>{co.carbon_min}-{co.carbon_max} tC/ha</span>
               </div>
               <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'6px' }}>
@@ -1279,7 +1279,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* â”€â”€ RESTORATION TAB REPORT â”€â”€ */}
+      {/* ── RESTORATION TAB REPORT ── */}
       {tab === 'restoration' && (
         <div>
           <SH title="National Restoration Programme" color="#1D9E75"/>
@@ -1299,7 +1299,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
               <div key={co.name} style={{ background:'white', borderRadius:'10px', padding:'12px', marginBottom:'10px', border:'1px solid #eee' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'6px' }}>
                   <button onClick={() => { onFlyTo && onFlyTo(co.lng, co.lat, co.zoom || 10); }}
-                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County â†—</button>
+                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County</button>
                   <span style={{ background:'#E24B4A20', color:'#E24B4A', fontSize:'11px', padding:'2px 8px', borderRadius:'10px', fontWeight:'700' }}>Target: {co.restoration_target.toLocaleString()} ha/yr</span>
                 </div>
                 <div style={{ display:'flex', gap:'12px', fontSize:'11px', marginBottom:'6px' }}>
@@ -2265,7 +2265,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
       )}
 
       {/* TABS */}
-      <div style={{ display:(showReport || showDegReport || showStakReport || showTabReport) ? 'none' : 'grid', gridTemplateColumns:'repeat(3,1fr)', flexShrink:0, borderBottom:'2px solid #eee' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', flexShrink:0, borderBottom:'2px solid #eee', display: (showReport || showDegReport || showStakReport || showTabReport) ? 'none' : 'grid' }}>
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
             style={{ padding:'10px 4px', border:'none', borderBottom:tab===t.key?`3px solid ${t.color}`:'3px solid transparent', background:tab===t.key?`${t.color}18`:'white', color:tab===t.key?t.color:'#777', fontWeight:tab===t.key?'800':'500', cursor:'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:'3px' }}>
@@ -3068,6 +3068,3 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
     </div>
   );
 }
-
-
-
