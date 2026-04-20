@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState, useRef, useMemo } from 'react';
 
 const COUNTIES = [
@@ -751,7 +751,7 @@ async function exportAllPDF() {
   doc.save('Kenya_Mangrove_All_Counties_Report.pdf');
 }
 
-// ── CONTACT FORM (sends via Anthropic API) ────────────────────────
+// â”€â”€ CONTACT FORM (sends via Anthropic API) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function ContactModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState('');
   const [org, setOrg] = useState('');
@@ -849,7 +849,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ── ABOUT MODAL ───────────────────────────────────────────────────
+// â”€â”€ ABOUT MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function AboutModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -927,7 +927,7 @@ function AboutModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ── HELP MODAL ────────────────────────────────────────────────────
+// â”€â”€ HELP MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function HelpModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -960,7 +960,7 @@ function HelpModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// ── HAMBURGER MENU ────────────────────────────────────────────────
+// â”€â”€ HAMBURGER MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function DisclaimerModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -1055,7 +1055,7 @@ function HamburgerMenu() {
 }
 
 
-// ── TAB-SPECIFIC REPORT COMPONENT ────────────────────────────────
+// â”€â”€ TAB-SPECIFIC REPORT COMPONENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void; onFlyTo?: (lng: number, lat: number, zoom: number) => void }) {
   const [countyTab, setCountyTab] = useState(COUNTIES[0].name);
   const c = COUNTIES.find(x => x.name === countyTab) || COUNTIES[0];
@@ -1082,7 +1082,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
     <div style={{ padding:'0 2px' }}>
       <button onClick={onClose}
         style={{ display:'flex', alignItems:'center', gap:'6px', background:`${color}18`, border:'none', borderRadius:'8px', padding:'8px 14px', fontSize:'12px', fontWeight:'700', color, cursor:'pointer', marginBottom:'12px', width:'100%' }}>
-        <- Back
+        Back
       </button>
 
       {/* Header */}
@@ -1091,7 +1091,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         <p style={{ fontSize:'11px', color:'rgba(255,255,255,0.8)', margin:0 }}>Kenya Mangrove Portal | KFS | KMFRI | 2017-2027 Management Plan</p>
       </div>
 
-      {/* ── SPECIES TAB REPORT ── */}
+      {/* â”€â”€ SPECIES TAB REPORT â”€â”€ */}
       {tab === 'species' && (
         <div>
           <SH title="Kenya Mangrove Species - National Overview" color="#0F6E56"/>
@@ -1138,7 +1138,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* ── TOTALS TAB REPORT ── */}
+      {/* â”€â”€ TOTALS TAB REPORT â”€â”€ */}
       {tab === 'totals' && (
         <div>
           <SH title="National Mangrove Statistics" color="#085041"/>
@@ -1186,7 +1186,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* ── CARBON TAB REPORT ── */}
+      {/* â”€â”€ CARBON TAB REPORT â”€â”€ */}
       {tab === 'carbon' && (
         <div>
           <SH title="Blue Carbon Stocks - All Counties" color="#085041"/>
@@ -1279,7 +1279,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* ── RESTORATION TAB REPORT ── */}
+      {/* â”€â”€ RESTORATION TAB REPORT â”€â”€ */}
       {tab === 'restoration' && (
         <div>
           <SH title="National Restoration Programme" color="#1D9E75"/>
@@ -3068,3 +3068,4 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
     </div>
   );
 }
+
