@@ -2265,7 +2265,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
       )}
 
       {/* TABS */}
-      <div style={{ display:(showReport || showDegReport || showStakReport || showTabReport) ? 'none' : 'grid', gridTemplateColumns:'repeat(3,1fr)', flexShrink:0, borderBottom:'2px solid #eee' }}>'
+      <div style={{ display:(showReport || showDegReport || showStakReport || showTabReport) ? 'none' : 'grid', gridTemplateColumns:'repeat(3,1fr)', flexShrink:0, borderBottom:'2px solid #eee' }}>
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
             style={{ padding:'10px 4px', border:'none', borderBottom:tab===t.key?`3px solid ${t.color}`:'3px solid transparent', background:tab===t.key?`${t.color}18`:'white', color:tab===t.key?t.color:'#777', fontWeight:tab===t.key?'800':'500', cursor:'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:'3px' }}>
@@ -3068,6 +3068,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
     </div>
   );
 }
+
 
 
 
