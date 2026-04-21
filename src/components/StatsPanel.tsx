@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useState, useRef, useMemo } from 'react';
 
 const COUNTIES = [
@@ -129,7 +129,7 @@ const TABS = [
   { key: 'map',         label: 'Map',         emoji: 'MAP', color: '#0F6E56' },
   { key: 'species',     label: 'Species',     emoji: 'SPP', color: '#1D9E75' },
   { key: 'totals',      label: 'Totals',      emoji: 'TOT', color: '#085041' },
-  { key: 'carbon',      label: 'Blue Carbon', emoji: 'BLC', color: '#0F6E56' },
+  { key: 'carbon',      label: 'Carbon',      emoji: 'BLC', color: '#0F6E56' },
   { key: 'documents',   label: 'Documents',   emoji: 'DOC', color: '#185FA5' },
   { key: 'restoration', label: 'Restoration', emoji: 'RES', color: '#5DCAA5' },
   { key: 'degradation', label: 'Degradation', emoji: 'DEG', color: '#E24B4A' },
@@ -464,7 +464,7 @@ async function exportCountyPDF(c: typeof COUNTIES[0]) {
   const nL=doc.splitTextToSize(c.note,CW-10); doc.text(nL,M+7,y+3); y+=20;
 
   section('1. AREA DATA');
-  writeup(`${c.name} County has ${c.area.toLocaleString()} ha - ${((c.area/61271)*100).toFixed(1)}% of Kenya's 61,271 ha national total. Of this, ${dHa.toLocaleString()} ha (${c.degraded}%) is degraded and ${hHa.toLocaleString()} ha (${c.healthy}%) remains healthy. Restoration target: ${c.restoration_target.toLocaleString()} ha/yr under the 2017-2027 plan.`, '#0F6E56');
+  writeup(`${c.name} County has ${c.area.toLocaleString()} ha — ${((c.area/61271)*100).toFixed(1)}% of Kenya's 61,271 ha national total. Of this, ${dHa.toLocaleString()} ha (${c.degraded}%) is degraded and ${hHa.toLocaleString()} ha (${c.healthy}%) remains healthy. Restoration target: ${c.restoration_target.toLocaleString()} ha/yr under the 2017-2027 plan.`, '#0F6E56');
   kv('Total mangrove area',`${c.area.toLocaleString()} ha`,'#0F6E56');
   kv('National share',`${((c.area/61271)*100).toFixed(1)}% of Kenya total`,'#0F6E56');
   kv('Degraded area',`${dHa.toLocaleString()} ha (${c.degraded}%)`,'#E24B4A');
@@ -511,7 +511,7 @@ async function exportCountyPDF(c: typeof COUNTIES[0]) {
   });
 
   section('4. BLUE CARBON STOCKS');
-  writeup(`${c.name} stores ${c.carbon_min}-${c.carbon_max} tC/ha - 10x higher than terrestrial forests. Total: ${(c.area*c.carbon_min).toLocaleString()} to ${(c.area*c.carbon_max).toLocaleString()} tC. Significant REDD+ and PES potential.`,'#085041');
+  writeup(`${c.name} stores ${c.carbon_min}-${c.carbon_max} tC/ha — 10x higher than terrestrial forests. Total: ${(c.area*c.carbon_min).toLocaleString()} to ${(c.area*c.carbon_max).toLocaleString()} tC. Significant REDD+ and PES potential.`,'#085041');
   kv('Carbon stock',`${c.carbon_min}-${c.carbon_max} tC/ha`,'#0F6E56');
   kv('Total carbon (min)',`${(c.area*c.carbon_min).toLocaleString()} tC`,'#0F6E56');
   kv('Total carbon (max)',`${(c.area*c.carbon_max).toLocaleString()} tC`,'#0F6E56');
@@ -751,7 +751,7 @@ async function exportAllPDF() {
   doc.save('Kenya_Mangrove_All_Counties_Report.pdf');
 }
 
-// â”€â”€ CONTACT FORM (sends via Anthropic API) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CONTACT FORM (sends via Anthropic API) ────────────────────────
 function ContactModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState('');
   const [org, setOrg] = useState('');
@@ -798,7 +798,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
         <div style={{ padding:'24px' }}>
           {sent ? (
             <div style={{ textAlign:'center', padding:'20px' }}>
-              <div style={{ fontSize:'40px', marginBottom:'12px' }}>(OK)</div>
+              <div style={{ fontSize:'40px', marginBottom:'12px' }}>✓</div>
               <p style={{ fontSize:'16px', fontWeight:'800', color:'#085041', margin:'0 0 8px' }}>Message Sent!</p>
               <p style={{ fontSize:'13px', color:'#666', margin:'0 0 20px' }}>Thank you for contacting us. We will get back to you shortly.</p>
               <button onClick={onClose} style={{ padding:'10px 24px', background:'#085041', color:'white', border:'none', borderRadius:'10px', fontSize:'13px', fontWeight:'700', cursor:'pointer' }}>Close</button>
@@ -849,7 +849,7 @@ function ContactModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ ABOUT MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── ABOUT MODAL ───────────────────────────────────────────────────
 function AboutModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -865,21 +865,21 @@ function AboutModal({ onClose }: { onClose: () => void }) {
           <div style={{ background:'#f0f7f4', borderRadius:'12px', padding:'16px', marginBottom:'16px', borderLeft:'5px solid #0F6E56' }}>
             <p style={{ fontSize:'14px', fontWeight:'800', color:'#085041', margin:'0 0 8px' }}>What is this Portal?</p>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              The Kenya Mangrove Portal is a web-based Geographic Information System (GIS) platform for visualising, analysing, and managing Kenya's national mangrove ecosystem data. Built by the Kenya Forest Service (KFS) in partnership with KMFRI, the portal provides open access to spatial and attribute data covering all 5 coastal counties - Lamu, Kilifi, Kwale, Mombasa, and Tana River.
+              The Kenya Mangrove Portal is a web-based Geographic Information System (GIS) platform for visualising, analysing, and managing Kenya's national mangrove ecosystem data. Built by the Kenya Forest Service (KFS) in partnership with KMFRI, the portal provides open access to spatial and attribute data covering all 5 coastal counties — Lamu, Kilifi, Kwale, Mombasa, and Tana River.
             </p>
           </div>
 
           <div style={{ background:'#f5f0ff', borderRadius:'12px', padding:'16px', marginBottom:'16px', borderLeft:'5px solid #534AB7' }}>
             <p style={{ fontSize:'14px', fontWeight:'800', color:'#3C3489', margin:'0 0 8px' }}>Mangroves, Blue Carbon and Climate Change</p>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              Kenya's 61,271 ha of mangroves are among the most carbon-dense ecosystems on Earth, storing 500-1,000 tC per hectare - ten times more than terrestrial forests. As globally recognised blue carbon sinks, mangroves directly support Kenya's commitments under the Paris Agreement, the UN Decade on Ecosystem Restoration (2021-2030), and Sustainable Development Goals 13 (Climate Action), 14 (Life Below Water), and 15 (Life on Land). Mangroves also protect coastlines from erosion, support over 20,000 artisanal fishers, and generate ecosystem services valued at KES 269,448/ha/yr.
+              Kenya's 61,271 ha of mangroves are among the most carbon-dense ecosystems on Earth, storing 500-1,000 tC per hectare — ten times more than terrestrial forests. As globally recognised blue carbon sinks, mangroves directly support Kenya's commitments under the Paris Agreement, the UN Decade on Ecosystem Restoration (2021-2030), and Sustainable Development Goals 13 (Climate Action), 14 (Life Below Water), and 15 (Life on Land). Mangroves also protect coastlines from erosion, support over 20,000 artisanal fishers, and generate ecosystem services valued at KES 269,448/ha/yr.
             </p>
           </div>
 
           <div style={{ background:'#E1F5EE', borderRadius:'12px', padding:'16px', marginBottom:'16px', borderLeft:'5px solid #1D9E75' }}>
             <p style={{ fontSize:'14px', fontWeight:'800', color:'#085041', margin:'0 0 8px' }}>Restoration and Community Forest Associations</p>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              Mangrove restoration is central to Kenya's goal of achieving 10% forest cover and contributing to the Africa Forest Landscape Restoration Initiative (AFR100). Community Forest Associations (CFAs) are the backbone of restoration on the ground - sourcing planting material, monitoring survival rates, and ensuring long-term stewardship. The Kenya Mangrove Portal supports CFAs by providing spatial data and evidence-based tools for planning, monitoring, and reporting restoration activities.
+              Mangrove restoration is central to Kenya's goal of achieving 10% forest cover and contributing to the Africa Forest Landscape Restoration Initiative (AFR100). Community Forest Associations (CFAs) are the backbone of restoration on the ground — sourcing planting material, monitoring survival rates, and ensuring long-term stewardship. The Kenya Mangrove Portal supports CFAs by providing spatial data and evidence-based tools for planning, monitoring, and reporting restoration activities.
             </p>
           </div>
 
@@ -893,13 +893,13 @@ function AboutModal({ onClose }: { onClose: () => void }) {
           <div style={{ background:'#f0f5ff', borderRadius:'12px', padding:'16px', marginBottom:'20px', borderLeft:'5px solid #185FA5' }}>
             <p style={{ fontSize:'14px', fontWeight:'800', color:'#0C447C', margin:'0 0 8px' }}>Restoration Partners</p>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              Remarkable restoration work is underway across all 5 counties, led by partners including Eden People+Planet, COBEC, Earthlungs, WWF Kenya, Plan International, Nature Kenya, Leaf Charity, and the Grow Initiative - together planting over 15 million propagules and seedlings since 2019 and restoring more than 1,434 ha in Kilifi County alone. Their continued engagement with KFS, local CFAs, and coastal communities is essential for achieving Kenya's restoration goals.
+              Remarkable restoration work is underway across all 5 counties, led by partners including Eden People+Planet, COBEC, Earthlungs, WWF Kenya, Plan International, Nature Kenya, Leaf Charity, and the Grow Initiative — together planting over 15 million propagules and seedlings since 2019 and restoring more than 1,434 ha in Kilifi County alone. Their continued engagement with KFS, local CFAs, and coastal communities is essential for achieving Kenya's restoration goals.
             </p>
           </div>
 
           {/* Partner logos */}
           <p style={{ fontSize:'12px', fontWeight:'800', color:'#085041', margin:'0 0 12px', textAlign:'center' }}>Partners</p>
-            {/* Real partner logos - embedded as base64 */}
+            {/* Real partner logos — embedded as base64 */}
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'10px', marginBottom:'12px' }}>
               {[
                 { name:'Ministry of Environment', sub:'Kenya', color:'#085041', bg:'#f0f7f4', src:'data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABxASwDASIAAhEBAxEB/8QAHQABAAIDAQEBAQAAAAAAAAAAAAcIBAUGAwIBCf/EAFMQAAEDAwMDAQUDBwgECA8AAAECAwQFBhEABxITITFBCBQiUWEVMnEWIzZ0gZGyFxg1QlJic6EJM4KzJCY0N0OV0fBTVFVjcnaDhJKTsbTS4fH/xAAbAQEAAgMBAQAAAAAAAAAAAAAAAgUDBAYBB//EADURAAIBAwIFAgMGBQUAAAAAAAABAgMEESExBRJBUXETYYGRoRQyscHh8AYiIzVyFTM0gvH/2gAMAwEAAhEDEQA/ALl6aaaAa8J8yNAiqlTHksMIICnFfdTkgAk+gyR38Dye2vfWPUobFRp0mnyklTEllbLoBxlKgQR+46AyNNRjstc8lEyp7c3C+pVct5fSaddyFTYv/RujPk8SkH9h1J2vE09idSnKm8SGmmmvSA0015S5DESK9KkupaYZQpxxxRwEpAySfoANAfL8uMxIjx3nkIekqKWUE91kJKjj8ACde+ov2nqUi+7sq+4Cw4ijtA02hsuAd2wQXX/xWrAz8hj8ZQ14nlZROpTdOTjLdDTTTXpA85b7UWK7KkL4MsoU44rBOEgZJ7fTXM7c7g2ruDBkzLWqKpjUVaUPcmVtlJUMj7wGcjW3uz9Fav8AqL38B1XP/R8/olc361H/AN2dAWf0000A0000A0000A0000A0000A0000A0000A0000A0000A0000A0000A001yW8Vyt2jtnXq8pzg5HiLSxhfFRdUOKAD8+RHjQEebue0NRbWclUy2YZrtSZISuSD/wJlWcFKlpOVKHyT8x3102x256b7oTSa1GZpNwcl84Q5J6iE4w4gK9CD4yT2J8ao3DZly7fp7b0SWkIAbSekXBKKVLWoj659CDnGc6kybXESacisRZalRpQ4tPKe6bcDgAOSk8SeQKvqc+NVFXiNSnUjFRym2t/l7d/l3LWlw+FSnKTlhpJ7fP37fPsTP7SlLqlt3PRNz7cDqZcY+7yygZBABKeQ8lJTySfTxqabWrMa4Leg1iKUBEuO26UBwLLRUkKKCR6jODrQXA+uJs1KccqfvT5ofTTNyT13VM8UrB8/Eog9/nqvHs83LPsm96tRas62xTkxHXGY6nVEOYwppDZ8cu5BJ8ZP4ncdWNOvyZ1lrj8zycpXNpHMdaeVnut8PxrgsruBeNIsuiLqdVcAAQpTaM45cR3JPoBkZPc9xgEkAxFtJ7RdMuu436XUgmOhSlFlam+mQn54ycp+n3h5ORnFZt+Ny6lf90vrMkmnNL4tJQo8V4zggf2Rk4H4k9ydR3EkPxJLUmM6tl5pQW24g4UlQ8EHW2VZ/VxCkrQlaFBSVDIIOQR89QR7Tty1Oc/TtuLeSp2RVFJVKLKuSinnxDRCTkDPdWfTH11y+xe9iZe2Nbh1eaiNUafBdWw4rlgOlJ4AfIKPceMEKHgp1rfZkFYG6Ka5VH1x/tEPMEvKyt1PHkG1ZPY8+4Pk8frrUuasYuNNvHNoWXDs0p/aOXm5NcdPPw3LLWnSKfZtmQKQJDbUSnRghbzqwlOfKlEnAGSSf26g+6vaVfo+4a6bFtkVK3ELS2mWytYefyASpsEYOM544ycedbD2sJbsGZbrxlGSy51UGlpfDa3FApUHU57EgZHfH0z3xX3cOWjhAoqqk7JmQHveFOKa5lpCuIShRQkfF3wMdz48nWtcX06NeNGMdH1/T6fHQlRtI16Uq85a5+vku3t9etv31QxVrfl9VAPF5hwcXmFd/hcRnKT27fP010eqV+yzdTlF3xZpU9D8Zqq04U89fI5uoytpePmoAp79xnGrqasKU+eCl3K6pDkk4msuz9Fav8AqL38B1XP/R8/olc361H/AN2dWMuz9Fav+ovfwHVc/wDR8/olc361H/3Z1kIFn9NNNANNNNANNQXsx7RdP3C3KrNky7d+w3YCX1R5K54eTJ6K+Kxjpp4HieWMnsD8u/PWx7VsW4GL2lQbKc90tunOVCO6up4M5tLyWx26X5vIVnyrGMd/OgLK6ar9uD7TEGy2LAmVK1HHIV10qPU5Drc/vT23QgkBPT/O8Qv5ozj0zre3BvoxTahuQxGt9ucxZdOhT2pDdQATUUyWkuDGGz0wArzlefPbQEyaag25d96k09YFItq0I0+vXlRmqs3HmVVMZiOhbYWG+qpH5xWeQHZOcDt3wPPdje6+9u7ahXHVtnV/ZjrDXvbq7jYSYslalAscUtqUvGAeYGDy9NATtpqBavvfuHS7mt+0pezCWrmriJLsenruljAbZRz5dVLRR3CV9iRjj9dYdK9p6FMtK3bsfs6REok6uLolXlOTgRS3wlCkq7N/nWyleeWUY4kYPbIFhtNR3s3uady5tzP0+hGLQaRUTAhVMyuf2ipOeako4DgkDiQeSs8h4wdctde9Vyv7j1ixtstvlXdMoTQXVZLtRRFaaWRkNp5A8lZ7eR3BGCAToCbdNV1PtPInWRbdZt6xX6jWK1XDQl0h6pJjKjy8JKU9RTZCgrqIwSEgZOcYOpn28q901ugKmXdZ/wCSdRD6kCD9pNzctgDC+o2AnuSRjyMfXQHR6aaaAaaaaAaaaaA/FqShBWtQSlIySTgAaire2oUe9/Z9umTbkyJWGhBU8hTJ5lJQQonA7pUAlXY4/dqU5CXFsOIad6TikkIc4hXE47HB841QuzxfGyO5zset0iYmFMc92f5NlUWWyV91Z+6pJTy+o+mCNeN4WT1LLwYF01D/AIqUqTRK0yxjpOMRGThbjqQAcAD64ODgY9c69KG3cVPeVWnrY68KbN6r8KQtSFEju4kFshSUHB+f1HrrsalZsCwb5nUOdAXNp8tHXoEltPPLKlAqbBHYFKinv8sHt41n0+pPwpTEOcplL05pTqEJJWlRHkpwPPjKfHqD51x1xcTsZulCCbWuvVPXTx1ydZQt4XsFVnLCemnRrTXz7HYVzdSgX7b1PolHiSKexEQlcyC4nCm1oPFtkY8gYz9fh+uuPTbF03zZ9QpdrRYjlTdluqdU8sNGM2QlCkhRHYkJx/tnWvTQqampSKvQ62ul1GVhLiHUAtrUPAU2rBz9QQfx1qqq3WrcYaY68toBslb7D6h7y8VKUpRIxgnPYH0Gtiz4hTq3kq0nrhJReU13x0JrhFSpRjawaWrbl0fbbXJgfzXd3P8AxCjf9Yj/APHX5/Ne3d/8n0f/AKxT/wBmujt6n12sXQxR13cW4vuyJcqW1UnSlpCuwRkkfGVYH0zrdWXRJF4XHUI9Muus0+lRGm1cpUlbj5UcgpACsEZSe/n6a6P1nppuU74XDMn6ukUm3h4Wdl3y/Bzdn+z7urbdZTUp1LpL0AIKZjQnhXNrye2O5BAUPqka6oTlt3ZUJzLgjvtTUT4zqE/m47xAUWyfCvi5ZHyP4a5S5jcFAuOZSJFaqTvTXmO4mU5+daJwkjv5OD2+es6DSKmmKl9VWTRGJTLaZIUlK3XHUpCeYKuyFED6/s1Scauoelyt8sk01+mMlrY8KlQ5KykpwmnovzzjwdBvZu1Rr4ZgQbWtx6dUYhQp6a7z4RyoDmykII6hBKckkAYOPOoVqf2/Sqgmnzm10pMuopkyZbvZlShgoSFdwUjHr2B/DOpSo0ei2lSpSKbIDkdsKeeekqJHInyVgYP/ANfGvmY/CXBJuaD7xDU0Xw+Ry7qBB5IH3e3jz+/VdV4y6tRv08x+r+Ht2PafCFSp49TEvov/AHufu08Jip+0FaDZXEqEqG3IkzH2sYUQ2opcOAe+Sn9vr66tzGrtGk1x+hxqlFeqUdrrPRm3ApbaOXHKgPHftg99VCt5mftZYgvJ9L0Kr3S+mJEy1zep1PCcpIHkKPwpJ9OQ9cakH2QrPqlNrNfuxcCXApVQZSwwJiSl6UsLKi8AruE98ZPkn6a6Wzi6EI0Wnos56eP0Odu2q0pVk1vt18k+XO249bVUaabU44uG8lCEjJUSggAD1Oq++wnSarRbTuRNYpk2nqVIYUlMmOtokBs5ICgM6sPXXHGaHPdaWUOIjOKSoeQQkkHUUey5X63X6JV3q1VJdQcbdaCFSHSspBSScZ8a2ZVVGpGHfP0MtDhs61nVu01im4prq+Z4Jj0001lK4aa8Z0qLBhPzp0lmLFjtqdffeWENtISMqUpR7BIAJJPYAa5ym7j7eVJx5unX5a0xbDC5DqY9XYcLbSByW4oJWcJSO5UewHnQFQavsbumxZEus2/QpUW6m7sqgQ22+0lx6mzIzbZc5FWMZStOM5HUJ10svY+7qFKv6k0O33JECTY8SlU99txtIlyke7l3AKgQSpLiiSAPOrSovOz10BFwIuugqo63eiioCotGOpzOOAc5cSrPbGc51mUqvUOqz58Cl1mnTpdOcDc5iNKQ45FWc4S4lJJQfhV2VjwfloCvD+0dauGubVU24aA6aLBsRdHrSytB91fVFCAnznkF+CAQCAc64awdmd0qHZe79Dq9JenSqhS4tNo74ebxOQwVIb4Dl8IDaUYCsYGB51bCDfNlT1wkQbwt6Uqe8uPDSzUmVmQ6gJK0N4V8akhScgZI5DPka8l7h2Aisroq75thNTQ+Y6oRqzAfS6DgtlHLkFA9uOM50BXrdyzK7UdobOtCobNzbjmwbTiR4tVhVBtuRTKglkIW0tPq2ClBJyUnuPIyM7cjbncqq+xtRLKlxX63dzDrKpDQkIUtKA6tSUlalYUUIKEk5P3e2dT9d162haIZN0XNSaMX89FMyWhpTmPJSCckD5jX5IvezI9vR7ikXbQWKNJWG2Kg7UWkR3FkE8UuFXEqwlXYHPY/LQEPb/bTTtyd9LLXOpcp61WaZOj1KYzIDZjrU050iMKCieZQcAEHwcjI1o7M24vE+ydd22NyWgymqQlSEUnpdFInkELZeBSR8XMYyrBICc+urGKrtETVIdKVWacmoTmi9EimSjqyGwMlbaM5UkDvkAjWPbV12vc/vH5N3JRq17sUh/7PnNyOlyzjlwUeOcHGfkdAc57PtsO2fsza9vyqcKdNjwUGYxkEpkK+JzJBIJ5E+uoijUzcraLencCv0Pb+XeVFu5xuXHchykNrZeTzUELB7pGXVjOPASRnuBOrV/2I7EqEtq9bbcj0wpE91NUYKIhUrgnqnlhGVfCOWMntryibj7eS4cubFvy1n4sJCVy3mquwpDCVKCUlagvCQVEJBOMkgaAqtG9n6+HLOsyJX6OqTJqV7GrXCxGlIT7jFc6aFDkFDvxSs5QSRkY7jVsrAs+h2NbqKDbzUhqCh1ToS/IW8rkrz8SyTrJ/Ki2fd6XI/KKkdGrrCKa5763xmqPhLJzhwn5JzrSubrbXNrU25uTZyFpJCkqrkYEEeh+PQHY6a/G1ocQlxtSVoUAUqScgg+o1+6AaaaaAaaaaAa4D2g3YTW09WVMLfMloReWM9bqJ4FP1Hk49AfTOu/1Ce4y3r23bhWg7j7GpSkvSG+QIec6fJSiPolSUD5FajrBcT5YY6vRfEzUIc089Fr8jmb3dVLpto0qStaFRKUiS8jGVALCeIPbOcIx+3UfXZAhTG3ZsqQ4ZowiAWCUvNFRwkNAeSfH97xjtrvbyqsCoXpVK4iQj3dsop7ATjB6YwcfirOPoB89cZYU+TUrjVdcMtwmmyU09LjKHV/CSC8AoFKe/g4+Z1xV3XUr6dSUmoQws/kvP70OwtaLjZQpxinKWXj834J22X2ppFu7ZwKVclLh1KqvhUma7KYS4tDjncoCiMjiMDOfIJHnVXLqXWuvNoqZIVEaIbR1sqXjCVceRP1Iz/wD3VyNp7hmXDbC3KmvnUIklyO+viE9QA5QvA7DKVJ8eoOqxzaadwdxLlNktxn4kOSUqK5KUc/jWAtPLBKcAD9n111VaFO4pQqU4p7NFTwZUad3Oley5Y4aerWuTnLBqSWaqht5I+zGk+7S+ooISlxPIoewDyVwPEgHsSPoNSOuXZlDiquuDNkSKq+WFq6L3H3guD84SzywMnkr+6e3prRL2fvjPUTToRWPBM5vOM9wDntnv+/WXUtqb0lzzIjUGHGaS02020J7SylKUgd1ZGSSCSfmTqcJVIx+74LK5t+H166/rpJ/ea0TWcpPXLe2uMaI4m9q3U7gu5qutEtpjoUyw24rPweRy/E9yP8/lNXszUGDcsGp1e6IcervtrbbjpkN82WgFOA8UKynl8Iye5z41wTu018tNLdcpsVKEJKlKM1rAA8nzqU/ZBr1Kq1lT4sVRROhyAiQ0VA9inIWOw7KUVn/LWOhRc63qVY64MXG/9Po2sadjUy864fTHX4kb727cRqDusua91W7XrqQtuK2eEZMhIwptQGAB25AeuT8tYLkJqRQnIKpZe6CSphZOAW/GCf6wGfP0Hy1JG7dfqVwTa9QVvsM0dh7oNB2OheVISObmT8SSHOYBBHYfXUWWLVEKZlWzVGg1NigILie7bzaieCkH5Eeh1zPGa0KlWU6EsuDWV291+DM/CKU6dKMKyxzrR9/Z/iiUqhOYq27e3E2oe7uUyTFyEqSCgP8ATdCR/wDM6YH1A1Puq3qpqK9s/wBNh8CsWrIXh1OOaUcuYWPrxIV48oI+epq2wuNd02VBqshARMwpiWlPgPNqKFkfQkch9CBrrbWsp/8AZKXzX7+hy1zRcPg2vr+/qbe4/wBHql+qO/wHUMex9+j9b/xmP4Fame4/0eqX6o7/AAHUMex9+j9b/wAZj+BWlX/k0/DL7h39ivP8qf4snbTTTW4cscZvt/zIX5/6t1H/AO2c1WzaaFMR7NVflTG9uPdlWJU/dVU6OU1rn0V/69ZOCOPPOAP6v11b+pQolSp0mnVCM1KhymlMyGHUhSHW1ApUlQPYggkEfXXJUrajbSlOSHKbY1AiLkxnIrxahISXGXE8VtnA7pUCQR6jQFCqs1XbB27olrvdaTbV6s0yvQHFDsxLQUB9H7QRn6dL6nU0+0FcErZTe66bghJdRCvu13UMqR2S3UW08Er/ANn4T+Lp1Z2pWJZlSo9No1QtekS6dSykwIz0VCm43EYHAEfD27dtZF12ha91iILlt+m1gQ1lyN75HS70lHGSnI7ZwP3DQFWRZ/5C132ZLfda6ctL8+RMBHcPuiO4sH/0Srj+CRqI9y4M957dKS/SqQbd/lDdZqNW9061RgZfdwWgSkcCMgjkMkgds51/QmrW7QqtVabVanSYcyfSlrXAkPNBS4ylY5FBP3SeKc4+Q1grsazVwKxAXbFJVFrcgyaoyqKkpmOlXLm4MfErl3yfXvoCtFqtWRM9ru7GdwZFLnwolAiJoK60ttcdyOGWTzQXPgUSkqVkf2nD88REqkxK1YdXolMceRZk/duLEpK2zlKWltykkoz69Ms/5avLcu1u3dyRYEat2bR5rdOYTGh844CmWUjCW0qGCEAeE5xrYCx7OTRKbRE2xSU02mSUS4MVMVAbjvJzxcSkDAWOSvi89z89AVG2Kn3HE9pyzdvrrQtVTsuJUqWiQRgPxukpTCh9OB7f3eHrnUV7T3PWtobYZvWlpfdj3ZSqjSUhPhma0odJ3/Z5owPqvX9FV2rbS7rRdaqFTjXm2uiio+7p64RgjjzxnGCR+BxrXI24sFFHh0ZNn0QU6DK97ixvc0dNl7/wiRjAV9dAUQatV6yts98LYkqJkwoFvCRn0dVIZW4PwClKA/DUp7hwpkb2SLwcqLe3CXFwaR7ubYjluRw97Z5e9Ek5P3MYx35fTVo6hYdmVBdYXOtekyVVrp/aZdjJV750yC31Mj4uJAIz4wNa6HtRtpDp86nxLGoDESoIQiYyiEgIfShYWkLGO4CkhQ+oGgKe0lqu2TvDt/tFVutIp1MuqNVqFKWPvRJGCUfsXnx/W6n01Ktw2LZA9tqhUMWdb32U/aC5T0H7MZ6Dj3XfHUU3x4leAPiIz2GrDVO0rYqdWplWqNApsqoUrHuEl2OlTkbBBHBRGRggEfLXu7btCduZm53aTDXW2Y3urU8tAvIZyT0wryE5Uo4+p0B8UK4bdqs+o0mi1any5VIWlmdGjOpUqIo5CUrSPun4VDB/sn5a2+uI2q24plgrr01ibJqVWuCorn1KfIAC3VEqKUADsEJ5KwP7x+gHb6AaaaaAaaaaAajLcja77fuMXPRrhXQZ5bCJalNKcbdSBx59loKVBGUnuQQACO2dSbqLvaWZfVYsWWhtT7Eae2ZDOcJUlYUhJOe331JHceusNxj022s41M1DLqJJ4zoQxTKU0w9VaNKktVFtmY8286AOK1JXhKk47Y4gH6a3NiWGIm2Fy1WlKqTkmnS1IhwUcFpLaQ2s+E8lZStWBnPbWVtvaluu2k5cN516NSKKZ7kZMZ5YjF0Nk/CXSoHKilR4oAJA7a3O8u6tv7f7dQ6ftuKdLk1lp0RHYchKkxU8Rl9WCSVfF2z6jv8AdI1z1hwpznOrWx6c9VHfw+2mxeX/ABWNOEIU2+eG8tvK7nGWLTqhcs1yBSHw1BkLwfepSooJI+5wUorcIAP3U4A1pb/sym2dXPsN1+mqqr7SX2Y8RHwttjOEEkBRWvDisYx8Kfn3hic7Vo0+jOxYqE1CKtLwnNLUpTiirPJR9e/qD8++vi8bjuCqV964a3KUa04pKG3ASVICPChyJ7+APlqytLKlRjlZb21ef0Kq9uafFIzoRnFway2ljHz1znRe+CQeizjPSR/8I19JbQn7qEpz8hrAt+tx69AEtsIakowmWwMDgv8AtJH9g/5HI+WdiApRCUgEnJ7kAADuSSewAHcn0GkoyjLlPh95a3tpc/Z22301evbB8SZUenQJNTlI5MxG+pxzjqLzhCP9pX+QUfTW62Ihy7jodQmW7GjR67CUESI7MpTDziDkoUMgAjAI7nyPTUeXjUn3nGWUMdOlNIS6H1J/5SpXYOgn+qD90HwO57q1qIsqvs1VUuPxhZbKUu9PKFYz6+n3j41KVGFVKE/mnj8D63wC1jwjhsqtWpmplcyazus7vbTbvqWN20pMquXu3b8oVSK5yck1LlFUhTCOJwnkvkkErI8E5z21q49nxKLdddkq68uaxLcjNPvBKeaGyQk8EAJB898fPWw9mLeiZBiPWVeKqjUXow6sCaVBxamPhHBXJQKgPIxk4OPTUkX3T7FrZ+34f2lDqqjyLrERYSvt8XUS5xQcDyeQPrk60LvgnNbOFu/5m8tvdrtk6Wy43GVaNSqswxolsvfBH22thVq7ma3LpN0sQYjk0RpTK2VqWPgQtRISoBScqICVY8HViLKt2HatsxKHCW463HSeTrmObq1EqUtWPUkk/wCWqs2lHkr3Fiw6eorkKq7bTUtpJbHEJQsnyVDCSQcEjsfTVv8AW9wuKVNpxw46PrsanEpN1E1LKlqum5gXH+j1S/VHf4DqGPY+/R+t/wCMx/ArU11npfY83rpUpr3dzmEnBKeJzj641G3s6m1/siqJtiDUYjYdb6wmPJcKjxOMYAx6626kG68Jdsk7bjFrb2FawqP+pVcXFf4vLJLqkxqnUyVUH+XRisrec4jJ4pSScfsGq37MVDe/dajJ3Lj7hQqHAeqZTDoApjbkdcZtzitK3McwT8QB7ntnIyMWVksNSYzsZ9tLjLqChxCvCkkYIP7NQFYmyu5dgOu0Czd0o8Ozl1AS0x5FLS9KaQVAraSonHxAYJ7fMAEnOyVR0Xs83nct13VufCr9S98j0O6ZECnI6DbfQYQtYSjKEgqwAO6sn66hOTvNuu97K1u3bAuQG6ald32UZRgxvjaLbxSjgW+A+JKe/HPbzqW7O2iv+0dyK7X6FuHAYoleuFdXqFNXR0rW42t4rU0HSolJ4qKeQA+eNaiD7OM2Ps1blgG646naPc6K4qX7keLqUhY6QTz7H4/OT48aA4C9vaNvGRsRaL9rT0x74mGV9sOCK0tTKISFF9RbUkpQVjgv7vYcgMenR7h7s7jfyR7YQLOqQVfd0wPf35CYjKytpmOXHfzZQUArJBGE4+FWMa3X82KC1d+4Vei11lCbpgS40FhUQkU9ckhTi88vi75AAx8KiNe1D9malyLhpc2+qv8AlDTqRb0ajU+Gx1ofSU2BydK23Ao5Jc+HxhffOAdAfD163xfXsxwNy7QvtNuVGk0eXKrDSaSxK99fjtnkj852ZBU2pQIB7ODt21H1x7gbx27sBa+4k3dYvuXLVYbHEW7ESYDKm5JcxhB6ueCD90H4cDydS9Ymxz1oWHuLY9OuFBod0JkilsKYUTTeuytohSislzALfyJ4d+51j3XsXUavsdZu3sO6I8SbbM9iameuEVoeU0l0AcOYx3dB8n7v10B1OwFZeuC259SVuNKvlkTOgiVIoQphYUlCVKQEcEFQwtJ5Y9cZ7HUWWjXt395bovKqWpf7Fn0SgVJdOpcVNMakCS4g/eeK/iAICSfP3uw7HM6bfU69adDlIvW5KdXZC3AY7kOn+6htGO4I5K5HPrqKEbJ3/al4XJUdrtxolApNxyDKlRJdNEhUV1RJKmsnB+8cZx2wDnAOgNUN+WrJ9oO8bX3Pu5uHRIUGAKe03TlOIEhcZlbxSppouEFSlEczgZwNYtib1XOz7HlY3IuSqpnXA26/FhvmO03l5S0ts/AhISeJVyIx3CTnUp2NtnNt3eK6NwJdeRUDXYEOKpn3bgtK2GW21LJ5EHkWycADGcajqnezM/8Ayb2pYFXuxqXRKTXHKrUmW4q2jPBwEthQXlvALgJGT8eRgjQGLtXuruC7thutSb1qAF92hT5M1h8xWmz0zFUtpXTSkJVxWjPdPhaQc6jyje0ZuN/JRMgVqr+6XqxNgS4swwmB73TpJT3COHDI5JBISDhafUK1Lk/2a6bTrrq1SsWr/YNMrNtTKJUIL/Wll1T7S0pdDjjhV8Ki0eP/AJvtjOsK/wD2X4tz21YkVm4WYVYtiEzAkTfcypMxlvBA48xxIVyI7n75z6aA1+4m5N2Vzc28KXC3BY27syzBGYn1JNNTLfkSX+yBxIJCeQWO39nvnl2w9xd1rwofs725cVF3Mg1aXIulNMfuGHSEjqxSh5R5MONkBY4JJ4p9BgnJJ767toLtiboVPcLa+9o9vT6yyhuqwpsESI76kgAODv2V2B8eSo57kHn/AObfUmtjKDt7FvGM3PpNwJrgnKp5U2pYS4A3w55wCsHOe+PHfQEh7AVl64Lbn1JW40q+WRM6CJUihCmFhSUJUpARwQVDC0nlj1xnsdV2353V3BTvtX7Ltu76jHmtORI9twqT7sY7j6+BcTKUvuFZKhxPg4GAPNqtvqdetOhykXrclOrshbgMdyHT/dQ2jHcEclcjn11AN5+yxVarW7jRTLrpLVIr9VFVU5MphcnQXuSlHpOpWnIPNQwcAjHbIyQLB7c3HEui0INTjVSFU3UthmY/Dz0jJQAHQnPoFZ10Wo49nnbyq7X2Ku0p9aiVaLHmOuQXWYnQUGlnlhwZOVcirvk9sDPbUj6AaaaaAajv2jpKIez1ZlOSWmEMllwpW3z6vF5BDYHzJAx/2akTWsumh065bem0GrMl2FNaLbqQcEeoIPoQQCD8wNRnFSi4vqTpy5Zp9j+d9/Vn8qKhGiw689JiIUp1iIeQaacWfzihkDBOE9+/44wNafpxIOFCKS42fzYb7leD35EeRjOu6rWzt+U+qSIjlkVOSW3FBLzEQvIWM9lBSQQf+/Ya3FvbFbm1dOU22achIwFTnUNfs45KvT5a06cHCCpxTwtCyr8MhWrevUrxS303znPf8n1OE9+ioqTLsX3tUdtjiC+McScZAA9MD9+Prr8cjxanXWWpLHFxlkF1Dn3jnuCDnuPw+ettTLHuCc+lv3UNBa32W1uqwlx1oHk0Mf1sjABxrZRLYgS5dIny6vylPLZbm0xlSkOtRyriCgJ7qITklPdQ/brHGLi0vYjxfgVGtGUrRqEpdtI7Y2S06vy/BydwwV0Yt1ikqLDrbiis8hhQPkYPkH5HWVU639usJhQm+EIozMDayFPK8hPI5wkdjxHr5JwCJQg7Vuybhjy4Fk1ufSUscSythxnm5niVc3VDtglQwfQZHkazF7N1qn0/3WXZFWlFMvrsyozjRcWzyA6biUrOMpyew5AjHrrK1PGm5r8J4Ra20FC9mqj6PaS9k86e+ngjmUiHULZp0FtLhaaSE/FjkUggd/w1qLybZYnwo1LdKG4qELLfcjuACB3+Q/79tSLW7ZptHpk9EmHVKFPVNeEJuUy620G1OpDaTzHH7pKic/tGubq1hqdq9WkUmtCdGYwtciT8KFEqKEpQUjBzgkdsYHc61oW3pyTT2y/mTs7K7darGvJOlUSTa3/lWF0xl6NvXbGxxjk+BxUmdGccSjIaUpjkEgj5+R/+9ercqhVJwQ4sWXIcdUQEAr7AjBwM+T4+pOussbbK8L0pc+o29BamMwnOm4kvpSpSuPLCeRAPbH7xrEm7c31SZIckWbW47xJCXG4a1E4+SkA62Hzcuh5D+FbKFdJV2knqs4fuSF7MLsaHuTbtqxJKW34xky3g40eQV0lBSE+AMhR/cfXVytV39lLbSpUedPuy66LLhVIYap4ldlpSQoOL4+QTkDvjtnViNZbSj6VP3by/LJcSlD13Gm8xjovCMKv/ANBVD9Wc/hOoi9lT+hq3/jM/wq1Ltf8A6CqH6s5/CdRF7Kn9DVv/ABmf4VanL/dj8Tk7z+6W3if4E1aaaazF6NNNNANcNuVu3t7txNhwrzuD7LfmNqdjo9zfe5pBwTlpCgO/zxrudVm9oWFcNQ9q7bCHataZolYcps/3ec9FEhDWGnSrLZ7KykKT9M59NASxWt6NtKRYtNvWdczbdFqpUKe57u71JJSopUENcep2I7kpAHbPka8rb3w2xuC26zX6fcqfc6I31Kml2K8h6MjOORaKeZGf7IPy89tQtvSuZZm/e0F0bm1BFUo0GI/Hm1NMQoYEzDmHC2nIRgrZV/7Mn+qdcHuJUKfe+4G8l9WaC/bTNpCFJqDbakNSZBUx2GQMn82f2Iz6jIFpbQ3x2su2c9BoV2NSJTMZUtTLsR9hamkp5KUgOoTzwkE4Tk4Gdedo77bV3ZVmKXQbmclSH0OLbK6ZKZb4toUtZLjjSUJAShR7keMedVcsqLPpG4tlyb+qS6kJu2//ABTktNJYajJVCX/wZwAfGpKVuJ5FWSVJJ+8AOh9la56FH2oi0S4t2UOU00qqe82e3TG+q00Ou44pLyU9VR6YW5jP9bA8DQE9Ub2gdqKuZxh3I8WocV6Yt5dOkpbcZZ/1q2yW/j4+oGT8gdYtJ9pTZSq1JinQL06sqQvg0j7MmJ5H8S0AP2nUOezRdcqgbz0vbCzbzbvuwnoD8tl9cJTbtJGFr4lRAIyoJSR4/ODsk9tdNtd/zne0p/7v/uZegJLtXf3aO6K1Eo1Fu9t6dMJEVp2DJY6yv7KFONpClE9gAck9h31l/wAtm2H5Ffll+VKPsX3/AOzut7nI6nvOM9LpcOpyx3xx8d/GqebWRZ9Ob2Frl51Jc2y11OWKUyy0ln7NmiYrHVXglxKnEoX3I7BQ7BJ5Sd/JtSf58xpHWd+xCx+Vv2d/0PvmeGceP9Z8fj+740BbdCgpAUM4IyMgg/uPjX7ppoBpppoBpppoBpppoBrkaRuXY1VW6iDcMdwtMOSDybWgKbbBK1JKkjngAk8c9gdddqAqFs5cdLoVDaM5cqUzTanFlsSJpXHjrfZcQ0plPHtkqAUfkToCR2t17AcprtSTXwIbQbKnlRH0pPNQSjiSj4skgDGfOtnRb5tOtPxI9MrcaQ/LdcaZaAUFlbaOa0lJAKSE98KxqGKZtVfTtjM2zJiiE405T1GS5cDkpP5h5Cl9NCkYR2BI/DGuzq23E23q/R7os5n7XqMaovyqg3UppS5LDzAZJDnHCSkAYGMaA5KLbOy9DlPwqrdtSqaV1B2b7s6txSEOIWptaiWkZ7HkkqJwcft1LtmMWQw65EtWLSm3Y7DLzhisgKDbySptRXj4goAkHJ1Ck3aK+RNaniKw+7LgyxKbiVpcToPPyVu8OQTlxKQoA+ATnXZWPbF/WPWnxFpNIrUaVTKfEckCb7t03GELSohHA5T8fbwTj014opbGSdapP70mzspm5dixIUGY/ccQMTmy9HUlK1ZbCikuEAEpRyBHJWB2Pftra3BdNv0ClsVOq1RhiLJUlMdacuF4qGQEJQCV5HfsD276iCwtv7+sSKl2nUyiViRPpCIEpqXLKW4q0OuKB+6eo2pLndIwcjXbXxa9fectGuUVmnTKlb3UQ5BUox2H0utBtZbODwKcApBGMEjXpjNhUdxbA+yIkmXWosiHUVONsoDC3i4pvHUSUJSSCnIyFAEZGuduSyNpqs3BkvR2qM7XUH3V6KVwy+A0pRJQQEZCMq+JOuepm0VwTrtp9wVuWacXqhOnTWqXPW0uL1G20NJQsAFR+DKiMd9dRvJtm7fsa2KUJ77VPp77vvj3vKhILao62wQrHxnkRnJGcn668aT3JwqSg8xeDRbUy9s9sKI5Gg3hIqEesyFyIy1RXF80tgIVxDaDyAP9bwe2PGpEYv8As55moOorsbFOjtyZiVJUlbLTgyhakkcsH8O3rqKK/t3uFOftqXIhwpMikxJEF80+rrgdVJUjpuJKU9gpKe6PQ/s1j3Vs7dlXj3DVoaoUGuTxFbZSZRdS5H6KUPMuLKQSQpIUFY8pz66JJLCPJzlUk5SeWyZ4942y+GujV2Fl2oGmoSArkZIGS3xxnIHcnxjvnGsm27iodxsSX6HUmJ7cWQuM+po54Op+8k/Ua4G6LAqadxa3eduR4wnSKEpmEXHyhLc9RKC9xAwD0uI5eexGmzW3lf2/rcth6qxKjSZlOYDim4/RUiU18OeOTy5IJJXkZKR216RJGr/9BVD9Wc/hOoi9lT+hq3/jM/wq1MFXacfpMxhpPJxxhaEDOMkpIGo82CtKu2pTaozXYiIy5Dramwl1K8gJIJ+EnHnWKSfqRfkprulUlxK3mk8JSy+i0JN0001lLkaaaaAa+FssreQ8tptTreeCykFSc+cH0196aA8ZsWLNjLjTIzMlhf3m3UBaVfiD2OviNT4EaF7jGgxmYvf8w20lLffz8IGNZOmgPJcWMstFcdlRaGG8oB4fh8tebFOp7DodYgxWnE+FIaSCP2gaydNAYlPplNpynVU+nxIhdOXCwylHM/M4HfXsiPHQp1aGGkqd/wBYQgAr/H569dNAeBhxCyhgxWC02eSEdMcUn5geh7nX30GPePeOi31uPHqcRyx8s+ca9NNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNANNNNAf/9k=' },
@@ -927,7 +927,7 @@ function AboutModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ HELP MODAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HELP MODAL ────────────────────────────────────────────────────
 function HelpModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -960,7 +960,7 @@ function HelpModal({ onClose }: { onClose: () => void }) {
   );
 }
 
-// â”€â”€ HAMBURGER MENU â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HAMBURGER MENU ────────────────────────────────────────────────
 function DisclaimerModal({ onClose }: { onClose: () => void }) {
   return (
     <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', zIndex:200, display:'flex', alignItems:'stretch', justifyContent:'flex-start' }}>
@@ -976,13 +976,13 @@ function DisclaimerModal({ onClose }: { onClose: () => void }) {
           <div style={{ background:'#fffbf0', borderRadius:'12px', padding:'16px', marginBottom:'16px', borderLeft:'5px solid #BA7517' }}>
             <p style={{ fontSize:'14px', fontWeight:'800', color:'#854F0B', margin:'0 0 10px' }}>Data Source Notice</p>
             <p style={{ fontSize:'13px', color:'#333', margin:'0 0 12px', lineHeight:1.8 }}>
-              Most of the data presented on this portal is sourced from the <strong>Kenya National Mangrove Ecosystem Management Plan 2017-2027</strong>, prepared by the Kenya Forest Service (KFS) with support from KMFRI and other partners.
+              Most of the data presented on this portal is sourced from the <strong>Kenya National Mangrove Ecosystem Management Plan 2017–2027</strong>, prepared by the Kenya Forest Service (KFS) with support from KMFRI and other partners.
             </p>
             <p style={{ fontSize:'13px', color:'#333', margin:'0 0 12px', lineHeight:1.8 }}>
-              This management plan is expiring next year (2027). A great deal has changed across the 5 coastal counties since 2017 - significant restoration efforts have taken place, new stakeholder partnerships have been established, and the ecological status of several sites has improved considerably. The data on this portal may not fully reflect these recent changes.
+              This management plan is expiring next year (2027). A great deal has changed across the 5 coastal counties since 2017 — significant restoration efforts have taken place, new stakeholder partnerships have been established, and the ecological status of several sites has improved considerably. The data on this portal may not fully reflect these recent changes.
             </p>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              A great deal will change again once the <strong>updated National Mangrove Ecosystem Management Plan 2028-2038</strong> is launched. The Kenya Mangrove Portal will be updated to reflect the new plan and its data upon its release.
+              A great deal will change again once the <strong>updated National Mangrove Ecosystem Management Plan 2028–2038</strong> is launched. The Kenya Mangrove Portal will be updated to reflect the new plan and its data upon its release.
             </p>
           </div>
 
@@ -992,9 +992,9 @@ function DisclaimerModal({ onClose }: { onClose: () => void }) {
               The portal also includes more recent field-verified data:
             </p>
             <ul style={{ fontSize:'13px', color:'#444', margin:'10px 0 0', paddingLeft:'20px', lineHeight:2 }}>
-              <li><strong>Degradation Survey 2023-2024</strong> - 192 sites across all 5 counties, funded by the Blue Carbon Project and IUCN</li>
-              <li><strong>Stakeholder Monitoring 2024</strong> - 90 sites in Kilifi County, funded by CIFOR-ICRAF under the Regional Centre of Excellence (RCoE) Project</li>
-              <li><strong>Carbon structural data</strong> - from KMFRI research publications and Gazi Bay long-term monitoring</li>
+              <li><strong>Degradation Survey 2023-2024</strong> — 192 sites across all 5 counties, funded by the Blue Carbon Project and IUCN</li>
+              <li><strong>Stakeholder Monitoring 2024</strong> — 90 sites in Kilifi County, funded by CIFOR-ICRAF under the Regional Centre of Excellence (RCoE) Project</li>
+              <li><strong>Carbon structural data</strong> — from KMFRI research publications and Gazi Bay long-term monitoring</li>
             </ul>
           </div>
 
@@ -1055,7 +1055,110 @@ function HamburgerMenu() {
 }
 
 
-// â”€â”€ TAB-SPECIFIC REPORT COMPONENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── TAB-SPECIFIC REPORT COMPONENT ────────────────────────────────
+// ── SVG CHART HELPERS ──────────────────────────────────────────────────────
+function SvgColumnChart({ data, colors }: { data:{label:string,value:number}[], colors:string[] }) {
+  const max = Math.max(...data.map(d => d.value));
+  const W = 300, H = 160, pad = 20;
+  const bw = Math.floor((W - pad * 2) / data.length) - 6;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display:'block' }}>
+      {data.map((d, i) => {
+        const bh = Math.max(4, ((d.value / max) * (H - pad - 30)));
+        const x = pad + i * ((W - pad * 2) / data.length) + 3;
+        const y = H - pad - bh;
+        return (
+          <g key={d.label}>
+            <rect x={x} y={y} width={bw} height={bh} rx="3" fill={colors[i % colors.length]}/>
+            <text x={x + bw/2} y={y - 3} textAnchor="middle" fontSize="9" fill={colors[i % colors.length]} fontWeight="bold" fontFamily="Arial">{d.value}%</text>
+            <text x={x + bw/2} y={H - 4} textAnchor="middle" fontSize="7" fill="#777" fontFamily="Arial">{d.label.split(' ')[0]}</text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+function SvgBarChart({ data, colors }: { data:{label:string,value:number}[], colors:string[] }) {
+  const max = Math.max(...data.map(d => d.value));
+  return (
+    <svg viewBox={`0 0 300 ${data.length * 36 + 20}`} width="100%" style={{ display:'block' }}>
+      {data.map((d, i) => {
+        const w = Math.max(4, (d.value / max) * 220);
+        return (
+          <g key={d.label} transform={`translate(0,${i * 36 + 10})`}>
+            <text x="0" y="12" fontSize="10" fill="#555" fontFamily="Arial">{d.label}</text>
+            <rect x="0" y="16" width={w} height="14" rx="4" fill={colors[i % colors.length]}/>
+            <text x={w + 4} y="27" fontSize="10" fill={colors[i % colors.length]} fontWeight="bold" fontFamily="Arial">
+              {d.value.toLocaleString()}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+function SvgPieChart({ data, colors, size=160 }: { data:{label:string,value:number}[], colors:string[], size?:number }) {
+  const total = data.reduce((s, d) => s + d.value, 0);
+  let angle = -Math.PI / 2;
+  const cx = size/2, cy = size/2, r = size/2 - 10;
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size}>
+      {data.map((d, i) => {
+        const slice = (d.value / total) * 2 * Math.PI;
+        const x1 = cx + r * Math.cos(angle);
+        const y1 = cy + r * Math.sin(angle);
+        const x2 = cx + r * Math.cos(angle + slice);
+        const y2 = cy + r * Math.sin(angle + slice);
+        const large = slice > Math.PI ? 1 : 0;
+        const path = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} Z`;
+        angle += slice;
+        return <path key={d.label} d={path} fill={colors[i % colors.length]} stroke="white" strokeWidth="1.5"/>;
+      })}
+    </svg>
+  );
+}
+
+function SvgDoughnut({ data, colors, size=160 }: { data:{label:string,value:number}[], colors:string[], size?:number }) {
+  const total = data.reduce((s, d) => s + d.value, 0);
+  let angle = -Math.PI / 2;
+  const cx = size/2, cy = size/2, r = size/2 - 8, ir = r * 0.55;
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size}>
+      {data.map((d, i) => {
+        const slice = (d.value / total) * 2 * Math.PI;
+        const x1 = cx + r * Math.cos(angle), y1 = cy + r * Math.sin(angle);
+        const x2 = cx + r * Math.cos(angle + slice), y2 = cy + r * Math.sin(angle + slice);
+        const ix1 = cx + ir * Math.cos(angle + slice), iy1 = cy + ir * Math.sin(angle + slice);
+        const ix2 = cx + ir * Math.cos(angle), iy2 = cy + ir * Math.sin(angle);
+        const large = slice > Math.PI ? 1 : 0;
+        const path = `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${ix1} ${iy1} A ${ir} ${ir} 0 ${large} 0 ${ix2} ${iy2} Z`;
+        angle += slice;
+        return <path key={d.label} d={path} fill={colors[i % colors.length]} stroke="white" strokeWidth="1.5"/>;
+      })}
+      <circle cx={cx} cy={cy} r={ir-2} fill="white"/>
+      <text x={cx} y={cy-4} textAnchor="middle" fontSize="11" fontWeight="bold" fill="#085041" fontFamily="Arial">{data.length}</text>
+      <text x={cx} y={cy+10} textAnchor="middle" fontSize="9" fill="#888" fontFamily="Arial">species</text>
+    </svg>
+  );
+}
+
+function ChartLegend({ data, colors }: { data:{label:string,value:number}[], colors:string[] }) {
+  const total = data.reduce((s,d) => s + d.value, 0);
+  return (
+    <div style={{ display:'flex', flexWrap:'wrap', gap:'4px', marginTop:'8px' }}>
+      {data.map((d, i) => (
+        <div key={d.label} style={{ display:'flex', alignItems:'center', gap:'4px', fontSize:'9px', color:'#555' }}>
+          <div style={{ width:'8px', height:'8px', borderRadius:'2px', background:colors[i % colors.length], flexShrink:0 }}/>
+          <span>{d.label}: {((d.value/total)*100).toFixed(0)}%</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+
 function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void; onFlyTo?: (lng: number, lat: number, zoom: number) => void }) {
   const [countyTab, setCountyTab] = useState(COUNTIES[0].name);
   const c = COUNTIES.find(x => x.name === countyTab) || COUNTIES[0];
@@ -1082,7 +1185,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
     <div style={{ padding:'0 2px' }}>
       <button onClick={onClose}
         style={{ display:'flex', alignItems:'center', gap:'6px', background:`${color}18`, border:'none', borderRadius:'8px', padding:'8px 14px', fontSize:'12px', fontWeight:'700', color, cursor:'pointer', marginBottom:'12px', width:'100%' }}>
-        Back
+        ← Back
       </button>
 
       {/* Header */}
@@ -1091,13 +1194,13 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         <p style={{ fontSize:'11px', color:'rgba(255,255,255,0.8)', margin:0 }}>Kenya Mangrove Portal | KFS | KMFRI | 2017-2027 Management Plan</p>
       </div>
 
-      {/* â”€â”€ SPECIES TAB REPORT â”€â”€ */}
+      {/* ── SPECIES TAB REPORT ── */}
       {tab === 'species' && (
         <div>
-          <SH title="Kenya Mangrove Species - National Overview" color="#0F6E56"/>
+          <SH title="Kenya Mangrove Species — National Overview" color="#0F6E56"/>
           <div style={{ background:'#f0f7f4', borderRadius:'10px', padding:'12px', marginBottom:'14px', borderLeft:'4px solid #1D9E75' }}>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              Kenya has 9 recorded mangrove species covering an estimated 61,271 ha. Rhizophora mucronata and Ceriops tagal face the highest harvesting pressure. Heritiera littoralis is unique to Tana River - the only riverine stand in Kenya.
+              Kenya has 9 recorded mangrove species covering an estimated 61,271 ha. Rhizophora mucronata and Ceriops tagal face the highest harvesting pressure. Heritiera littoralis is unique to Tana River — the only riverine stand in Kenya.
             </p>
           </div>
           {SPECIES_DATA.map((s, i) => (
@@ -1116,29 +1219,102 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
             </div>
           ))}
           <SH title="Species by County" color="#085041"/>
-          {COUNTIES.map(co => (
-            <div key={co.name} style={{ marginBottom:'10px', background:'white', borderRadius:'10px', padding:'12px', border:'1px solid #eee' }}>
-              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
+          {COUNTIES.map((co, coIdx) => {
+            const spData = co.species.map(sp => ({ label: sp.n, value: sp.p }));
+            // Unique chart per county: Lamu=Bar, Kilifi=Bar, Kwale=Column, Mombasa=Doughnut, Tana River=Pie
+            const chartConfig: Record<string,{type:string,label:string}> = {
+              'Lamu':       { type:'bar',     label:'Bar Chart' },
+              'Kilifi':     { type:'bar',     label:'Bar Chart' },
+              'Kwale':      { type:'column',  label:'Column Chart' },
+              'Mombasa':    { type:'doughnut',label:'Doughnut Chart' },
+              'Tana River': { type:'pie',     label:'Pie Chart' },
+            };
+            const cfg = chartConfig[co.name] || { type:'bar', label:'Bar Chart' };
+            return (
+            <div key={co.name} style={{ marginBottom:'16px', background:'white', borderRadius:'12px', padding:'14px', border:'1px solid #eee' }}>
+              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'10px' }}>
                 <p style={{ fontSize:'13px', fontWeight:'800', color:'#085041', margin:0 }}>{co.name} County</p>
-                <span style={{ fontSize:'11px', color:'#888' }}>{co.area.toLocaleString()} ha</span>
-              </div>
-              {co.species.map((sp, i) => (
-                <div key={sp.n} style={{ marginBottom:'6px' }}>
-                  <div style={{ display:'flex', justifyContent:'space-between', fontSize:'11px', marginBottom:'2px' }}>
-                    <span style={{ fontStyle:'italic', color:'#333' }}>{sp.n}</span>
-                    <span style={{ fontWeight:'800', color:PIE_COLORS[i%PIE_COLORS.length] }}>{sp.p}%</span>
-                  </div>
-                  <div style={{ background:'#eee', borderRadius:'3px', height:'6px' }}>
-                    <div style={{ width:`${sp.p}%`, background:PIE_COLORS[i%PIE_COLORS.length], borderRadius:'3px', height:'6px' }}/>
-                  </div>
+                <div style={{ display:'flex', gap:'6px', alignItems:'center' }}>
+                  <span style={{ background:'#E1F5EE', color:'#085041', fontSize:'10px', padding:'2px 8px', borderRadius:'8px', fontWeight:'700' }}>{cfg.label}</span>
+                  <span style={{ background:`${co.color}20`, color:co.color, fontSize:'10px', padding:'2px 8px', borderRadius:'8px', fontWeight:'700' }}>{co.area.toLocaleString()} ha</span>
                 </div>
-              ))}
+              </div>
+              {/* Bar chart for Lamu and Kilifi */}
+              {(cfg.type === 'bar') && (
+                <SvgBarChart data={spData} colors={PIE_COLORS}/>
+              )}
+              {/* Column chart for Kwale */}
+              {cfg.type === 'column' && (
+                <SvgColumnChart data={spData} colors={PIE_COLORS}/>
+              )}
+              {/* Doughnut chart for Mombasa */}
+              {cfg.type === 'doughnut' && (
+                <div style={{ display:'flex', justifyContent:'center', padding:'8px 0' }}>
+                  <SvgDoughnut data={spData} colors={PIE_COLORS} size={150}/>
+                </div>
+              )}
+              {/* Pie chart for Tana River */}
+              {cfg.type === 'pie' && (
+                <div style={{ display:'flex', justifyContent:'center', padding:'8px 0' }}>
+                  <SvgPieChart data={spData} colors={PIE_COLORS} size={150}/>
+                </div>
+              )}
+              <ChartLegend data={spData} colors={PIE_COLORS}/>
             </div>
-          ))}
+            );
+          })}
+        {/* Download buttons */}
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'8px', marginTop:'16px', paddingBottom:'16px' }}>
+            <button onClick={() => {
+              const headers = ['Species','Local Name','Estimated Area (ha)','Risk Status','Primary Use','Distribution'];
+              const rows = SPECIES_DATA.map(s => [s.name, s.local, s.area, s.risk, s.use, s.dominant]);
+              const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+              const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+              a.download = 'Kenya_Mangrove_Species_Report.csv'; a.click();
+            }} style={{ padding:'12px', background:'#0F6E56', color:'white', border:'none', borderRadius:'10px', fontSize:'12px', fontWeight:'800', cursor:'pointer' }}>
+              Download CSV
+            </button>
+            <button onClick={async () => {
+              const { default: jsPDF } = await import('jspdf');
+              const doc = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+              const W=210,H=297,M=14,CW=W-M*2; let y=20;
+              const sf=(h:string)=>{try{const c=h.replace('#','').padEnd(6,'0');const s=(n:number)=>isNaN(n)?0:Math.min(255,Math.max(0,n));return[s(parseInt(c.slice(0,2),16)),s(parseInt(c.slice(2,4),16)),s(parseInt(c.slice(4,6),16))]as[number,number,number];}catch{return[8,80,65]as[number,number,number];}};
+              const [r,g,b]=sf('#0F6E56');doc.setFillColor(r,g,b);doc.rect(0,0,W,55,'F');
+              doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(159,225,203);
+              doc.text('KENYA NATIONAL MANGROVE ECOSYSTEM MANAGEMENT PLAN 2017-2027',M,18);
+              doc.setFontSize(18);doc.setTextColor(255,255,255);doc.text('MANGROVE SPECIES REPORT',M,32);
+              doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(159,225,203);
+              doc.text(`9 recorded species | KFS | KMFRI | ${new Date().toLocaleDateString('en-GB')}`,M,46);
+              y=65;
+              const chk=(n=10)=>{if(y+n>H-14){doc.addPage();y=20;}};
+              SPECIES_DATA.forEach((s,i)=>{
+                chk(40);
+                const [sr,sg,sb]=sf('#1D9E75');doc.setFillColor(sr,sg,sb);doc.rect(M,y,CW,8,'F');
+                doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);
+                doc.text(s.name,M+3,y+5.5);
+                doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(80,80,80);
+                y+=12;
+                doc.text(`Local: ${s.local}`,M+2,y);y+=6;
+                doc.text(`Risk: ${s.risk}`,M+2,y);y+=6;
+                doc.text(`Use: ${s.use}`,M+2,y);y+=6;
+                doc.text(`Distribution: ${s.dominant}`,M+2,y);y+=6;
+                doc.text(`Estimated area: ~${s.area.toLocaleString()} ha`,M+2,y);y+=8;
+                const bw=Math.min(CW-4,(s.area/31000)*CW);
+                const [br,bg2,bb]=sf(s.rcolor);doc.setFillColor(br,bg2,bb);
+                doc.rect(M+2,y,bw,5,'F');y+=10;
+              });
+              const [fr,fg,fb]=sf('#085041');doc.setFillColor(fr,fg,fb);
+              const tot=(doc as any).internal.getNumberOfPages();
+              for(let i=1;i<=tot;i++){doc.setPage(i);doc.rect(0,H-12,W,12,'F');doc.setFontSize(7);doc.setTextColor(159,225,203);doc.text(`Kenya Mangrove Portal | Species Report | Page ${i}/${tot}`,M,H-5);}
+              doc.save('Kenya_Mangrove_Species_Report.pdf');
+            }} style={{ padding:'12px', background:'#185FA5', color:'white', border:'none', borderRadius:'10px', fontSize:'12px', fontWeight:'800', cursor:'pointer' }}>
+              Download PDF
+            </button>
+          </div>
         </div>
       )}
 
-      {/* â”€â”€ TOTALS TAB REPORT â”€â”€ */}
+      {/* ── TOTALS TAB REPORT ── */}
       {tab === 'totals' && (
         <div>
           <SH title="National Mangrove Statistics" color="#085041"/>
@@ -1158,7 +1334,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
               <div key={co.name} style={{ background:'white', borderRadius:'10px', padding:'12px', marginBottom:'10px', border:'1px solid #eee' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'6px' }}>
                   <button onClick={() => { onFlyTo && onFlyTo(co.lng, co.lat, co.zoom || 10); }}
-                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County</button>
+                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County ↗</button>
                   <span style={{ background:`${co.color}20`, color:co.color, fontSize:'11px', padding:'2px 8px', borderRadius:'10px', fontWeight:'700' }}>{co.area.toLocaleString()} ha</span>
                 </div>
                 <div style={{ display:'flex', borderRadius:'6px', overflow:'hidden', height:'12px', marginBottom:'6px' }}>
@@ -1183,23 +1359,79 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
               <span style={{ fontSize:'13px', fontWeight:'800', color:'#0F6E56' }}>KES {p.budget}M</span>
             </div>
           ))}
+        {/* Download buttons */}
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'8px', marginTop:'16px', paddingBottom:'16px' }}>
+            <button onClick={() => {
+              const headers = ['County','Area (ha)','Degraded %','Healthy %','Degraded ha','Healthy ha','Fishers','Ecosystem Value (KES/ha/yr)'];
+              const rows = COUNTIES.map(c => [c.name, c.area, c.degraded, c.healthy, Math.round(c.area*c.degraded/100), Math.round(c.area*c.healthy/100), c.fishers, c.ecosystem_val]);
+              const totRow = ['TOTAL / NATIONAL', 61271, 40.1, 59.9, 24585, 36686, '20000+', 269448];
+              const csv = [headers, ...rows, totRow].map(r => r.join(',')).join('\n');
+              const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+              a.download = 'Kenya_Mangrove_Totals_Report.csv'; a.click();
+            }} style={{ padding:'12px', background:'#085041', color:'white', border:'none', borderRadius:'10px', fontSize:'12px', fontWeight:'800', cursor:'pointer' }}>
+              Download CSV
+            </button>
+            <button onClick={async () => {
+              const { default: jsPDF } = await import('jspdf');
+              const doc = new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+              const W=210,H=297,M=14,CW=W-M*2; let y=20;
+              const sf=(h:string)=>{try{const c=h.replace('#','').padEnd(6,'0');const s=(n:number)=>isNaN(n)?0:Math.min(255,Math.max(0,n));return[s(parseInt(c.slice(0,2),16)),s(parseInt(c.slice(2,4),16)),s(parseInt(c.slice(4,6),16))]as[number,number,number];}catch{return[8,80,65]as[number,number,number];}};
+              const [r,g,b]=sf('#085041');doc.setFillColor(r,g,b);doc.rect(0,0,W,55,'F');
+              doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(159,225,203);
+              doc.text('KENYA NATIONAL MANGROVE ECOSYSTEM MANAGEMENT PLAN 2017-2027',M,18);
+              doc.setFontSize(18);doc.setTextColor(255,255,255);doc.text('NATIONAL TOTALS REPORT',M,32);
+              doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(159,225,203);
+              doc.text(`5 Counties | 61,271 ha | KFS | KMFRI | ${new Date().toLocaleDateString('en-GB')}`,M,46);
+              y=65;
+              const chk=(n=10)=>{if(y+n>H-14){doc.addPage();y=20;}};
+              const kv=(l:string,v:string,col='#085041')=>{chk(8);const[cr,cg,cb]=sf(col);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(80,80,80);doc.text(l,M+2,y);doc.setFont('helvetica','bold');doc.setTextColor(cr,cg,cb);doc.text(v,M+CW-2,y,{align:'right'});y+=7;doc.setDrawColor(220,220,220);doc.line(M,y-1,M+CW,y-1);};
+              const sec=(t:string,col='#085041')=>{chk(12);y+=4;const[cr,cg,cb]=sf(col);doc.setFillColor(cr,cg,cb);doc.rect(M,y-5,CW,9,'F');doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);doc.text(t,M+3,y);y+=9;};
+              sec('National Statistics');
+              kv('Total mangrove area','61,271 ha','#0F6E56');
+              kv('Degraded area','24,585 ha (40.1%)','#E24B4A');
+              kv('Healthy area','36,686 ha (59.9%)','#1D9E75');
+              kv('Artisanal fishers','20,000+','#185FA5');
+              kv('Ecosystem value','KES 269,448/ha/yr','#085041');
+              kv('Mangrove species','9','#0F6E56');
+              kv('Coastal counties','5','#085041');
+              sec('County Breakdown');
+              COUNTIES.forEach(co=>{
+                chk(20);
+                kv(co.name+' - Total',co.area.toLocaleString()+' ha',co.color);
+                kv('  Degraded',Math.round(co.area*co.degraded/100).toLocaleString()+' ha ('+co.degraded+'%)','#E24B4A');
+                kv('  Healthy',Math.round(co.area*co.healthy/100).toLocaleString()+' ha ('+co.healthy+'%)','#1D9E75');
+                const bw=CW;const hw=(co.healthy/100)*bw;const dw=(co.degraded/100)*bw;
+                const[hr,hg,hb]=sf('#1D9E75');doc.setFillColor(hr,hg,hb);doc.rect(M,y,hw,6,'F');
+                const[dr,dg,db]=sf('#E24B4A');doc.setFillColor(dr,dg,db);doc.rect(M+hw,y,dw,6,'F');
+                y+=10;
+              });
+              sec('Management Programmes');
+              PROGRAMMES.forEach(p=>{kv(p.name,'KES '+p.budget+'M | '+p.lead,'#0F6E56');});
+              const tot=(doc as any).internal.getNumberOfPages();
+              const[fr,fg,fb]=sf('#085041');
+              for(let i=1;i<=tot;i++){doc.setPage(i);doc.setFillColor(fr,fg,fb);doc.rect(0,H-12,W,12,'F');doc.setFontSize(7);doc.setTextColor(159,225,203);doc.text(`Kenya Mangrove Portal | Totals Report | Page ${i}/${tot}`,M,H-5);}
+              doc.save('Kenya_Mangrove_Totals_Report.pdf');
+            }} style={{ padding:'12px', background:'#185FA5', color:'white', border:'none', borderRadius:'10px', fontSize:'12px', fontWeight:'800', cursor:'pointer' }}>
+              Download PDF
+            </button>
+          </div>
         </div>
       )}
 
-      {/* â”€â”€ CARBON TAB REPORT â”€â”€ */}
+      {/* ── CARBON TAB REPORT ── */}
       {tab === 'carbon' && (
         <div>
-          <SH title="Blue Carbon Stocks - All Counties" color="#085041"/>
+          <SH title="Blue Carbon Stocks — All Counties" color="#085041"/>
           <div style={{ background:'#f0f7f4', borderRadius:'10px', padding:'12px', marginBottom:'14px', borderLeft:'4px solid #0F6E56' }}>
             <p style={{ fontSize:'13px', color:'#333', margin:0, lineHeight:1.8 }}>
-              Kenya's mangroves store 500-1,000 tC/ha - 10x higher than terrestrial forests. Total national carbon estimate: ~43 million tC. As blue carbon sinks, they directly support Kenya's NDC commitments under the Paris Agreement and SDG 13 (Climate Action).
+              Kenya's mangroves store 500-1,000 tC/ha — 10x higher than terrestrial forests. Total national carbon estimate: ~43 million tC. As blue carbon sinks, they directly support Kenya's NDC commitments under the Paris Agreement and SDG 13 (Climate Action).
             </p>
           </div>
           {COUNTIES.map(co => (
             <div key={co.name} style={{ background:'white', borderRadius:'10px', padding:'12px', marginBottom:'10px', border:'1px solid #eee' }}>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
                 <button onClick={() => { onFlyTo && onFlyTo(co.lng, co.lat, co.zoom || 10); }}
-                  style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County</button>
+                  style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County ↗</button>
                 <span style={{ fontSize:'13px', fontWeight:'800', color:co.color }}>{co.carbon_min}-{co.carbon_max} tC/ha</span>
               </div>
               <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'6px' }}>
@@ -1267,7 +1499,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
               </div>
             </div>
           ))}
-          <SH title="Mikoko Pamoja - Blue Carbon Pioneer" color="#085041"/>
+          <SH title="Mikoko Pamoja — Blue Carbon Pioneer" color="#085041"/>
           <div style={{ background:'#E1F5EE', borderRadius:'10px', padding:'14px', marginBottom:'8px' }}>
             {[['Location','Gazi Bay, Kwale County'],['Project type','Blue Carbon / REDD+'],['Annual offsets','3,000 tCO2/yr'],['Community revenue','KES 1.2M/yr'],['Managed by','Local CFA + KFS']].map(([l,v]) => (
               <div key={l} style={{ display:'flex', justifyContent:'space-between', padding:'6px 0', borderBottom:'0.5px solid #d0ead8' }}>
@@ -1279,7 +1511,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
         </div>
       )}
 
-      {/* â”€â”€ RESTORATION TAB REPORT â”€â”€ */}
+      {/* ── RESTORATION TAB REPORT ── */}
       {tab === 'restoration' && (
         <div>
           <SH title="National Restoration Programme" color="#1D9E75"/>
@@ -1290,7 +1522,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
           </div>
           <div style={{ background:'#E1F5EE', borderRadius:'10px', padding:'14px', marginBottom:'14px', textAlign:'center' }}>
             <p style={{ fontSize:'28px', fontWeight:'800', color:'#085041', margin:0 }}>24,585 ha</p>
-            <p style={{ fontSize:'13px', color:'#0F6E56', fontWeight:'700', margin:'4px 0 0' }}>Total degraded area - national priority</p>
+            <p style={{ fontSize:'13px', color:'#0F6E56', fontWeight:'700', margin:'4px 0 0' }}>Total degraded area — national priority</p>
           </div>
           <SH title="County Restoration Targets & Status" color="#085041"/>
           {COUNTIES.map(co => {
@@ -1299,7 +1531,7 @@ function TabReport({ tab, onClose, onFlyTo }: { tab: string; onClose: () => void
               <div key={co.name} style={{ background:'white', borderRadius:'10px', padding:'12px', marginBottom:'10px', border:'1px solid #eee' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'6px' }}>
                   <button onClick={() => { onFlyTo && onFlyTo(co.lng, co.lat, co.zoom || 10); }}
-                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County</button>
+                    style={{ fontSize:'13px', fontWeight:'800', color:co.color, background:'none', border:'none', cursor:'pointer', padding:0 }}>{co.name} County ↗</button>
                   <span style={{ background:'#E24B4A20', color:'#E24B4A', fontSize:'11px', padding:'2px 8px', borderRadius:'10px', fontWeight:'700' }}>Target: {co.restoration_target.toLocaleString()} ha/yr</span>
                 </div>
                 <div style={{ display:'flex', gap:'12px', fontSize:'11px', marginBottom:'6px' }}>
@@ -1452,7 +1684,7 @@ function DegradationReport({ onClose }: { onClose: () => void }) {
       </div>
 
       <SH title="5. Rehabilitation Status" color="#1D9E75"/>
-      <WU text="25 sites (13%) have been successfully restored, while 42 sites (21.9%) are under active rehabilitation. Kwale County leads in rehabilitation with 28 active sites - largely driven by the community-based rehabilitation programme at Gazi Bay and Vanga. The restoration target nationally is 3,400 ha/yr under the 2017-2027 Management Plan." bc="#1D9E75" bg="#f0faf7"/>
+      <WU text="25 sites (13%) have been successfully restored, while 42 sites (21.9%) are under active rehabilitation. Kwale County leads in rehabilitation with 28 active sites — largely driven by the community-based rehabilitation programme at Gazi Bay and Vanga. The restoration target nationally is 3,400 ha/yr under the 2017-2027 Management Plan." bc="#1D9E75" bg="#f0faf7"/>
       <div style={{ background:'white', borderRadius:'12px', padding:'16px', marginBottom:'18px', border:'1px solid #eee' }}>
         <div style={{ display:'flex', gap:'12px', alignItems:'center' }}>
           <DonutChart size={110} data={[{label:'Degraded',value:125,color:'#E24B4A'},{label:'Rehabilitation',value:42,color:'#BA7517'},{label:'Restored',value:25,color:'#1D9E75'}]}/>
@@ -1476,11 +1708,11 @@ function DegradationReport({ onClose }: { onClose: () => void }) {
       <SH title="6. Key Findings and Recommendations" color="#085041"/>
       <div style={{ background:'white', borderRadius:'12px', padding:'16px', marginBottom:'18px', border:'1px solid #eee' }}>
         {[
-          'Kilifi has highest surveyed degraded area (656 ha) - priority for urgent intervention',
+          'Kilifi has highest surveyed degraded area (656 ha) — priority for urgent intervention',
           'Lamu has most survey sites (73) with active degradation in Northern and Pate Island swamps',
-          'Kwale leads in active rehabilitation - Mikoko Pamoja and Gazi Bay models should be scaled',
-          'Mombasa most degraded proportionally (49.1%) - urban pressure and oil pollution key drivers',
-          'Only 13% of surveyed sites are fully restored - significantly more investment needed',
+          'Kwale leads in active rehabilitation — Mikoko Pamoja and Gazi Bay models should be scaled',
+          'Mombasa most degraded proportionally (49.1%) — urban pressure and oil pollution key drivers',
+          'Only 13% of surveyed sites are fully restored — significantly more investment needed',
           'Illegal harvesting and climate change are primary drivers across all 5 counties',
           'Community Forest Associations (CFAs) must be strengthened as primary implementation partners',
           'REDD+ carbon trading offers revenue mechanism to fund restoration at scale',
@@ -1496,6 +1728,43 @@ function DegradationReport({ onClose }: { onClose: () => void }) {
       <div style={{ background:'#A32D2D', borderRadius:'12px', padding:'14px', textAlign:'center', marginBottom:'8px' }}>
         <p style={{ fontSize:'12px', color:'#f5c5c5', margin:0, fontWeight:'600' }}>Kenya Forest Service (KFS) Field Survey 2023-2024</p>
         <p style={{ fontSize:'11px', color:'rgba(255,255,255,0.6)', margin:'4px 0 0' }}>Funded by the Blue Carbon Project and IUCN | {new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'})}</p>
+      </div>
+
+      {/* Download buttons */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'8px', marginTop:'16px', paddingBottom:'8px' }}>
+        <button onClick={() => {
+          const headers = ['County','Sites','Degraded Area (ha)','Pct County','Main Causes'];
+          const rows = [['Lamu',73,64,'0.2%','Illegal harvesting'],['Kilifi',37,656,'7.7%','Climate change'],['Kwale',68,277,'3.3%','Rice conversion'],['Mombasa',6,153,'4.1%','Oil pollution'],['Tana River',8,22,'0.7%','Sea level rise'],['TOTAL',192,1172,'1.9%','Multiple']];
+          const csv=[headers,...rows].map(r=>r.join(',')).join('\n');
+          const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+          a.download='Kenya_Mangrove_Degradation_2023-2024.csv';a.click();
+        }} style={{ padding:'12px', background:'#A32D2D', color:'white', border:'none', borderRadius:'10px', fontSize:'12px', fontWeight:'800', cursor:'pointer' }}>
+          Download CSV
+        </button>
+        <button onClick={async () => {
+          const{default:jsPDF}=await import('jspdf');
+          const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+          const W=210,H=297,M=14,CW=W-M*2;let y=20;
+          const sf=(h:string)=>{try{const c=h.replace('#','').padEnd(6,'0');const s=(n:number)=>isNaN(n)?0:Math.min(255,Math.max(0,n));return[s(parseInt(c.slice(0,2),16)),s(parseInt(c.slice(2,4),16)),s(parseInt(c.slice(4,6),16))]as[number,number,number];}catch{return[162,45,45]as[number,number,number];}};
+          const[r,g,b]=sf('#A32D2D');doc.setFillColor(r,g,b);doc.rect(0,0,W,55,'F');
+          doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(255,200,200);
+          doc.text('KENYA MANGROVE DEGRADATION FIELD SURVEY 2023-2024',M,18);
+          doc.setFontSize(16);doc.setTextColor(255,255,255);doc.text('DEGRADATION SURVEY REPORT',M,32);
+          doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(255,200,200);
+          doc.text('192 sites | 5 counties | Blue Carbon Project + IUCN | KFS | KMFRI',M,46);
+          y=65;
+          const chk=(n:number)=>{if(y+n>H-14){doc.addPage();y=20;}};
+          const kv=(l:string,v:string)=>{chk(8);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(80,80,80);doc.text(l,M+2,y);doc.setFont('helvetica','bold');doc.setTextColor(162,45,45);doc.text(v,M+CW-2,y,{align:'right'});y+=7;doc.setDrawColor(220,220,220);doc.line(M,y-1,M+CW,y-1);};
+          const sec=(t:string)=>{chk(12);y+=4;const[cr,cg,cb]=sf('#A32D2D');doc.setFillColor(cr,cg,cb);doc.rect(M,y-5,CW,9,'F');doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(255,255,255);doc.text(t,M+3,y);y+=9;};
+          sec('Survey Overview');kv('Total sites','192');kv('Counties','5 (all coastal)');kv('Period','2023-2024');kv('Total degraded area','1,172 ha');kv('Under rehabilitation','42 sites');kv('Restored','25 sites');
+          sec('County Results');[['Lamu','73 sites - 64 ha'],['Kilifi','37 sites - 656 ha'],['Kwale','68 sites - 277 ha'],['Mombasa','6 sites - 153 ha'],['Tana River','8 sites - 22 ha']].forEach(([c,v])=>kv(c,v));
+          sec('Main Causes');['Illegal harvesting','Aquaculture conversion','Sedimentation','Oil pollution','Climate change','Encroachment'].forEach((c,i)=>{chk(8);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(60,60,60);doc.text(`${i+1}. ${c}`,M+4,y);y+=8;});
+          const tot=(doc as any).internal.getNumberOfPages();const[fr,fg,fb]=sf('#A32D2D');
+          for(let i=1;i<=tot;i++){doc.setPage(i);doc.setFillColor(fr,fg,fb);doc.rect(0,H-12,W,12,'F');doc.setFontSize(7);doc.setTextColor(255,200,200);doc.text(`Degradation Survey 2023-2024 | Page ${i}/${tot}`,M,H-5);}
+          doc.save('Kenya_Mangrove_Degradation_2023-2024.pdf');
+        }} style={{ padding:'12px', background:'#185FA5', color:'white', border:'none', borderRadius:'10px', fontSize:'12px', fontWeight:'800', cursor:'pointer' }}>
+          Download PDF
+        </button>
       </div>
     </div>
   );
@@ -1572,7 +1841,7 @@ function StakeholderReport({ onClose }: { onClose: () => void }) {
       </div>
 
       <SH title="2. Framework of Collaboration with KFS"/>
-      <WU text="63.3% of stakeholder sites (57) operate with a formal Framework of Collaboration with KFS. Partners with frameworks - Eden, COBEC, Earthlungs, and Plan International - show more coordinated and larger-scale restoration. Partners without frameworks face challenges in accessing sites and coordinating with KFS rangers, leading to slower progress."/>
+      <WU text="63.3% of stakeholder sites (57) operate with a formal Framework of Collaboration with KFS. Partners with frameworks — Eden, COBEC, Earthlungs, and Plan International — show more coordinated and larger-scale restoration. Partners without frameworks face challenges in accessing sites and coordinating with KFS rangers, leading to slower progress."/>
       <div style={{ background:'white', borderRadius:'12px', padding:'16px', marginBottom:'18px', border:'1px solid #eee' }}>
         <div style={{ display:'flex', borderRadius:'10px', overflow:'hidden', height:'36px', marginBottom:'14px' }}>
           <div style={{ width:'63.3%', background:'#1D9E75', display:'flex', alignItems:'center', justifyContent:'center' }}>
@@ -1652,7 +1921,7 @@ function StakeholderReport({ onClose }: { onClose: () => void }) {
         ))}
         <div style={{ background:'#f0f7f4', borderRadius:'8px', padding:'12px', textAlign:'center', marginTop:'14px' }}>
           <p style={{ fontSize:'20px', fontWeight:'800', color:'#0F6E56', margin:0 }}>16,000,000+</p>
-          <p style={{ fontSize:'11px', color:'#888', margin:'2px 0 0' }}>Total seedlings/propagules planted - Kilifi County (2019-2024)</p>
+          <p style={{ fontSize:'11px', color:'#888', margin:'2px 0 0' }}>Total seedlings/propagules planted — Kilifi County (2019-2024)</p>
         </div>
       </div>
 
@@ -1695,13 +1964,13 @@ function StakeholderReport({ onClose }: { onClose: () => void }) {
       <SH title="7. Key Recommendations"/>
       <div style={{ background:'white', borderRadius:'12px', padding:'16px', marginBottom:'18px', border:'1px solid #eee' }}>
         {[
-          'Strengthen collaboration frameworks - streamline KFS approval processes to reduce bureaucratic delays',
+          'Strengthen collaboration frameworks — streamline KFS approval processes to reduce bureaucratic delays',
           'Invest in Forest Ranger outposts to safeguard restored areas from illegal logging',
-          'Scale up the Eden and COBEC models - Ngomeni and Mida Creek successes are replicable',
+          'Scale up the Eden and COBEC models — Ngomeni and Mida Creek successes are replicable',
           'Enhance community capacity through training of CFAs and local groups',
           'Conduct detailed environmental assessments before site allocation',
           'Secure additional funding from REDD+, carbon markets, and bilateral donors',
-          'Promote income-generating activities - ecotourism, beekeeping, crab fattening - to incentivise community stewardship',
+          'Promote income-generating activities — ecotourism, beekeeping, crab fattening — to incentivise community stewardship',
           'Expand the RCoE stakeholder monitoring methodology to all 5 coastal counties',
         ].map((a,i) => (
           <div key={i} style={{ display:'flex', alignItems:'flex-start', gap:'12px', marginBottom:'12px' }}>
@@ -1779,7 +2048,7 @@ function CountyReport({ c, onClose, hideBack }: { c: typeof COUNTIES[0]; onClose
       </div>
 
       <SH title="1. Area Data" color="#085041"/>
-      <WU text={`${c.name} County has ${c.area.toLocaleString()} ha - ${((c.area/61271)*100).toFixed(1)}% of Kenya's 61,271 ha national total. Of this, ${dHa.toLocaleString()} ha (${c.degraded}%) is degraded and ${hHa.toLocaleString()} ha (${c.healthy}%) remains healthy. Restoration target: ${c.restoration_target.toLocaleString()} ha/yr.`} bc="#0F6E56"/>
+      <WU text={`${c.name} County has ${c.area.toLocaleString()} ha — ${((c.area/61271)*100).toFixed(1)}% of Kenya's 61,271 ha national total. Of this, ${dHa.toLocaleString()} ha (${c.degraded}%) is degraded and ${hHa.toLocaleString()} ha (${c.healthy}%) remains healthy. Restoration target: ${c.restoration_target.toLocaleString()} ha/yr.`} bc="#0F6E56"/>
       <div style={{ background:'white', borderRadius:'12px', padding:'16px', marginBottom:'14px', border:'1px solid #eee' }}>
         <p style={{ fontSize:'14px', fontWeight:'800', color:'#085041', margin:'0 0 14px' }}>Area breakdown (ha)</p>
         <MiniBarChart data={[{label:'Total',value:c.area},{label:'Healthy',value:hHa},{label:'Degraded',value:dHa},{label:'Restore',value:c.restoration_target}]} color="#1D9E75" height={160}/>
@@ -1824,7 +2093,7 @@ function CountyReport({ c, onClose, hideBack }: { c: typeof COUNTIES[0]; onClose
       </div>
 
       <SH title="4. Blue Carbon Stocks" color="#085041"/>
-      <WU text={`${c.name} stores ${c.carbon_min}-${c.carbon_max} tC/ha - 10x higher than terrestrial forests. Total: ${(c.area*c.carbon_min).toLocaleString()} to ${(c.area*c.carbon_max).toLocaleString()} tC. Significant REDD+ and PES potential.`} bc="#085041"/>
+      <WU text={`${c.name} stores ${c.carbon_min}-${c.carbon_max} tC/ha — 10x higher than terrestrial forests. Total: ${(c.area*c.carbon_min).toLocaleString()} to ${(c.area*c.carbon_max).toLocaleString()} tC. Significant REDD+ and PES potential.`} bc="#085041"/>
       <div style={{ background:'white', borderRadius:'12px', padding:'16px', marginBottom:'18px', border:'1px solid #eee' }}>
         <div style={{ display:'flex', gap:'16px', alignItems:'center' }}>
           <DonutChart size={110} data={[{label:c.name,value:c.area*((c.carbon_min+c.carbon_max)/2),color:c.color},{label:'Others',value:(61271-c.area)*700,color:'#e8e8e8'}]}/>
@@ -2265,7 +2534,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
       )}
 
       {/* TABS */}
-      <div style={{ display:(showReport || showDegReport || showStakReport || showTabReport) ? 'none' : 'grid', gridTemplateColumns:'repeat(3,1fr)', flexShrink:0, borderBottom:'2px solid #eee' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', flexShrink:0, borderBottom:'2px solid #eee', display: (showReport || showDegReport || showStakReport || showTabReport) ? 'none' : 'grid' }}>
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
             style={{ padding:'10px 4px', border:'none', borderBottom:tab===t.key?`3px solid ${t.color}`:'3px solid transparent', background:tab===t.key?`${t.color}18`:'white', color:tab===t.key?t.color:'#777', fontWeight:tab===t.key?'800':'500', cursor:'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:'3px' }}>
@@ -2447,7 +2716,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
             <div style={{ background:'linear-gradient(135deg,#E1F5EE,#f0faf6)', borderRadius:'12px', padding:'16px', marginBottom:'14px', textAlign:'center' }}>
               <p style={{ fontSize:'34px', fontWeight:'800', color:'#085041', margin:0 }}>500-1,000</p>
               <p style={{ fontSize:'13px', color:'#0F6E56', margin:'4px 0 0', fontWeight:'700' }}>tC per hectare</p>
-              <p style={{ fontSize:'11px', color:'#888', margin:'4px 0 0' }}>Kenya mangrove carbon stocks - 10x higher than terrestrial forests</p>
+              <p style={{ fontSize:'11px', color:'#888', margin:'4px 0 0' }}>Kenya mangrove carbon stocks — 10x higher than terrestrial forests</p>
             </div>
 
             {/* Carbon stocks by county from Excel */}
@@ -2509,7 +2778,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
             <div style={{ background:'#fff5f5', borderRadius:'10px', padding:'14px', marginBottom:'12px', borderLeft:'4px solid #E24B4A' }}>
               <p style={{ fontSize:'13px', fontWeight:'800', color:'#A32D2D', margin:'0 0 6px' }}>Mangrove cover change & carbon loss (1990-2020)</p>
               <p style={{ fontSize:'12px', color:'#444', margin:'0 0 10px', lineHeight:1.7 }}>
-                Kenya lost 8,863 ha of mangroves between 1990 and 2020 - a 14% decline. Tana River lost 51% of its cover (2,323 ha). This translates to significant blue carbon emissions and loss of ecosystem services valued at KES 269,448/ha/yr.
+                Kenya lost 8,863 ha of mangroves between 1990 and 2020 — a 14% decline. Tana River lost 51% of its cover (2,323 ha). This translates to significant blue carbon emissions and loss of ecosystem services valued at KES 269,448/ha/yr.
               </p>
               {[
                 { county:'Tana River', loss:-2323, pct:-51.1, color:'#E24B4A' },
@@ -2707,7 +2976,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
             {/* County breakdown */}
             <div style={{ background:'#fff5f5', borderRadius:'10px', padding:'14px', marginBottom:'12px', borderLeft:'4px solid #E24B4A' }}>
               <p style={{ fontSize:'13px', fontWeight:'800', color:'#A32D2D', margin:'0 0 4px' }}>County breakdown</p>
-              <p style={{ fontSize:'11px', color:'#888', margin:'0 0 10px' }}>Kilifi has highest surveyed degraded area at 656 ha. Note: area estimates are from field survey - some sites had 0 ha recorded.</p>
+              <p style={{ fontSize:'11px', color:'#888', margin:'0 0 10px' }}>Kilifi has highest surveyed degraded area at 656 ha. Note: area estimates are from field survey — some sites had 0 ha recorded.</p>
             </div>
             {DEGRADATION_DATA.map(c => (
               <div key={c.county} style={{ background:'white', borderRadius:'10px', padding:'12px 14px', marginBottom:'10px', border:'1px solid #eee' }}>
@@ -2909,14 +3178,14 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
               <p style={{ fontSize:'13px', fontWeight:'800', color:'#534AB7', margin:'0 0 4px' }}>Restoration partners and area under restoration</p>
               <p style={{ fontSize:'11px', color:'#888', margin:'0 0 12px' }}>Total: 3,029 ha across 8 active partners | 15 million+ propagules planted (2019-2024)</p>
               {[
-                { partner:'Eden People+Planet',  area:2100, color:'#1D9E75', framework:'With', category:'NGO',     note:'Highest scale - Ngomeni, Kanagoni, Mida, Mtwapa, Kilifi Creek' },
+                { partner:'Eden People+Planet',  area:2100, color:'#1D9E75', framework:'With', category:'NGO',     note:'Highest scale — Ngomeni, Kanagoni, Mida, Mtwapa, Kilifi Creek' },
                 { partner:'Earthlungs',          area:612,  color:'#0F6E56', framework:'With', category:'NGO',     note:'Kilifi Creek, Msanganyiko, Katzuoni, Mwachinandi' },
-                { partner:'COBEC',               area:150,  color:'#5DCAA5', framework:'With', category:'CBO',     note:'Mida Creek - Uyombo, Kadaina, Majaoni, Ikulu' },
-                { partner:'Grow Initiative',     area:80,   color:'#085041', framework:'Without', category:'NGO',  note:'Awaiting framework signing - 1000 ha allocated' },
-                { partner:'WWF Kenya',           area:45,   color:'#185FA5', framework:'Without', category:'NGO',  note:'Not yet operational - 45 ha allocated' },
-                { partner:'Plan International',  area:15,   color:'#534AB7', framework:'With', category:'NGO',     note:'Kaya Chonyi, Timbetimbe - terrestrial + marine' },
-                { partner:'Nature Kenya',        area:20,   color:'#BA7517', framework:'Without', category:'NGO',  note:'Not yet started - issues with area allocation' },
-                { partner:'Leaf Charity',        area:7,    color:'#9FE1CB', framework:'Without', category:'NGO',  note:'Kilifi Creek, Gede, Mtwapa - smaller scale' },
+                { partner:'COBEC',               area:150,  color:'#5DCAA5', framework:'With', category:'CBO',     note:'Mida Creek — Uyombo, Kadaina, Majaoni, Ikulu' },
+                { partner:'Grow Initiative',     area:80,   color:'#085041', framework:'Without', category:'NGO',  note:'Awaiting framework signing — 1000 ha allocated' },
+                { partner:'WWF Kenya',           area:45,   color:'#185FA5', framework:'Without', category:'NGO',  note:'Not yet operational — 45 ha allocated' },
+                { partner:'Plan International',  area:15,   color:'#534AB7', framework:'With', category:'NGO',     note:'Kaya Chonyi, Timbetimbe — terrestrial + marine' },
+                { partner:'Nature Kenya',        area:20,   color:'#BA7517', framework:'Without', category:'NGO',  note:'Not yet started — issues with area allocation' },
+                { partner:'Leaf Charity',        area:7,    color:'#9FE1CB', framework:'Without', category:'NGO',  note:'Kilifi Creek, Gede, Mtwapa — smaller scale' },
               ].map(p => (
                 <div key={p.partner} style={{ marginBottom:'10px', padding:'10px', background:'#f9f9f9', borderRadius:'8px', borderLeft:`3px solid ${p.color}` }}>
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'4px' }}>
@@ -2939,11 +3208,11 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
               <p style={{ fontSize:'13px', fontWeight:'800', color:'#085041', margin:'0 0 4px' }}>Species survival rates (field observed)</p>
               <p style={{ fontSize:'11px', color:'#888', margin:'0 0 12px' }}>Source: CIFOR-ICRAF M&E mission Oct 2024</p>
               {[
-                { species:'Avicennia marina (Mchu)',      range:'75-85%', color:'#1D9E75', note:'Highest adaptability - thrives in dynamic coastal environments' },
-                { species:'Rhizophora mucronata (Mkoko)', range:'70-80%', color:'#0F6E56', note:'Key for shoreline protection - priority for Eden and COBEC' },
-                { species:'Sonneratia alba (Mlilana)',    range:'65-80%', color:'#5DCAA5', note:'Suited for high tidal ranges - Earthlungs focus species' },
-                { species:'Ceriops tagal (Mkandaa)',      range:'60-75%', color:'#BA7517', note:'Sensitive to environmental stressors - site matching critical' },
-                { species:'Bruguiera gymnorhiza (Muia)',  range:'60-70%', color:'#534AB7', note:'Coastal zone stabiliser - Leaf Charity and WWF Kenya' },
+                { species:'Avicennia marina (Mchu)',      range:'75-85%', color:'#1D9E75', note:'Highest adaptability — thrives in dynamic coastal environments' },
+                { species:'Rhizophora mucronata (Mkoko)', range:'70-80%', color:'#0F6E56', note:'Key for shoreline protection — priority for Eden and COBEC' },
+                { species:'Sonneratia alba (Mlilana)',    range:'65-80%', color:'#5DCAA5', note:'Suited for high tidal ranges — Earthlungs focus species' },
+                { species:'Ceriops tagal (Mkandaa)',      range:'60-75%', color:'#BA7517', note:'Sensitive to environmental stressors — site matching critical' },
+                { species:'Bruguiera gymnorhiza (Muia)',  range:'60-70%', color:'#534AB7', note:'Coastal zone stabiliser — Leaf Charity and WWF Kenya' },
               ].map(s => (
                 <div key={s.species} style={{ marginBottom:'10px', padding:'8px', background:'#f9f9f9', borderRadius:'8px' }}>
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'3px' }}>
@@ -2963,10 +3232,10 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
               <p style={{ fontSize:'13px', fontWeight:'800', color:'#085041', margin:'0 0 12px' }}>Key restoration sites (Kilifi County)</p>
               {[
                 { site:'Kanagoni (Jilore)',    area:'358.93 ha',  partner:'Eden',          highlight:'Largest single restored site in Kilifi' },
-                { site:'Kilifi Creek',         area:'364.09 ha',  partner:'Eden+Earthlungs',highlight:'4.2M+ propagules planted - 60%+ survival' },
+                { site:'Kilifi Creek',         area:'364.09 ha',  partner:'Eden+Earthlungs',highlight:'4.2M+ propagules planted — 60%+ survival' },
                 { site:'Mtwapa Creek',         area:'225.76 ha',  partner:'Eden+COBEC',     highlight:'214.66 ha Eden | 9.39 ha COBEC | 1.71 ha Plan' },
-                { site:'Ngomeni (Jilore)',     area:'94.66 ha',   partner:'Eden+Earthlungs',highlight:'1.7M+ propagules - 80% survival at Ikulu' },
-                { site:'Mida Creek (Gede)',    area:'143.9 ha',   partner:'Eden+COBEC',     highlight:'104 ha Eden | 40 ha COBEC - Dabaso success' },
+                { site:'Ngomeni (Jilore)',     area:'94.66 ha',   partner:'Eden+Earthlungs',highlight:'1.7M+ propagules — 80% survival at Ikulu' },
+                { site:'Mida Creek (Gede)',    area:'143.9 ha',   partner:'Eden+COBEC',     highlight:'104 ha Eden | 40 ha COBEC — Dabaso success' },
                 { site:'Marereni',             area:'196.97 ha',  partner:'COBEC',          highlight:'COBEC-led coastal restoration' },
               ].map(s => (
                 <div key={s.site} style={{ display:'flex', gap:'10px', marginBottom:'8px', padding:'8px', background:'#f9f9f9', borderRadius:'8px', alignItems:'flex-start' }}>
@@ -2983,7 +3252,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
               ))}
               <div style={{ background:'#f0f7f4', borderRadius:'8px', padding:'10px', marginTop:'8px', textAlign:'center' }}>
                 <p style={{ fontSize:'14px', fontWeight:'800', color:'#0F6E56', margin:0 }}>1,434.67 ha</p>
-                <p style={{ fontSize:'11px', color:'#888', margin:'2px 0 0' }}>Total forest restored area - Kilifi County</p>
+                <p style={{ fontSize:'11px', color:'#888', margin:'2px 0 0' }}>Total forest restored area — Kilifi County</p>
               </div>
             </div>
 
@@ -3010,7 +3279,7 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
             {/* Seedlings summary */}
             <div style={{ background:'white', borderRadius:'10px', padding:'14px', marginBottom:'12px', border:'1px solid #eee' }}>
               <p style={{ fontSize:'13px', fontWeight:'800', color:'#085041', margin:'0 0 4px' }}>Seedlings/propagules planted by station</p>
-              <p style={{ fontSize:'11px', color:'#888', margin:'0 0 12px' }}>Estimated totals (2019-2024) - Source: CIFOR-ICRAF M&E Report</p>
+              <p style={{ fontSize:'11px', color:'#888', margin:'0 0 12px' }}>Estimated totals (2019-2024) — Source: CIFOR-ICRAF M&E Report</p>
               {[
                 { station:'Jilore',  total:'10,000,000', details:'Kanagoni: 3M | Ngomeni: 6M | Mida: 1M', avgSurvival:'71.7%', color:'#1D9E75' },
                 { station:'Sokoke',  total:'4,000,000',  details:'Kilifi Creek, Msanganyiko, Kuchi, Mwachinandi', avgSurvival:'55.9%', color:'#BA7517' },
@@ -3068,9 +3337,3 @@ export default function StatsPanel({ onFlyTo, onStartDraw, isDrawing, drawnResul
     </div>
   );
 }
-
-
-
-
-
-
